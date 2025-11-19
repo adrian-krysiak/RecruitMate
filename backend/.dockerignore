@@ -1,0 +1,28 @@
+# --- General ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Python (Backend & ML Service) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+*.log
+local_settings.py
+db.sqlite3
+media/
+
+# --- Environment Variables ---
+.env
+.env.local
+
+# --- Git ---
+.git
+.gitignore
