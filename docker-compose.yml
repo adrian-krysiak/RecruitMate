@@ -23,8 +23,18 @@ services:
       - DB_PASSWORD=postgres
       - DB_HOST=db
       - DB_PORT=5432
+      - ML_SERVICE_URL=http://ml_service:5001
     depends_on:
       - db
+      - ml_service
+
+  ml_service:
+    build: ./ml_service
+    command: uvicorn main:app --host 0.0.0.0 --port 5001 --reload
+    volumes:
+      - ./ml_service:/app
+    ports:
+      - "5001:5001"
 
 volumes:
   postgres_data:
