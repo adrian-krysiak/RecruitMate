@@ -1,0 +1,29 @@
+# --- General ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Python (Backend & ML Service) ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+*.log
+local_settings.py
+db.sqlite3
+media/
+
+# --- Node.js (Frontend) ---
+node_modules/
+build/
+dist/
+typings/
+*.tsbuildinfo
+.npm
+*.log
+
+# --- Environment Variables ---
+.env
+.env.local
