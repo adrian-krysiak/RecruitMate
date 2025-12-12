@@ -1,3 +1,10 @@
-fastapi==0.121.3
+fastapi==0.124.4
 uvicorn==0.38.0
-requests==2.32.5
+spacy==3.8.11
+scikit-learn==1.8.0
+pandas==2.3.3
+numpy==2.4.0rc1
+sentence-transformers==5.2.0
+pydantic==2.12.5
+pytest==9.0.2
+httpx==0.28.1
