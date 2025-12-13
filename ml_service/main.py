@@ -1,6 +1,10 @@
+import asyncio
+import os
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
+from typing import Dict, Optional
+
 from fastapi import FastAPI, HTTPException, Depends
-from typing import Dict
 
 from src.matching_engine import HybridMatchEngine
 from src.data_models import MatchRequest, MatchResponse
@@ -10,8 +14,15 @@ from src.data_models import MatchRequest, MatchResponse
 async def lifespan(_app: FastAPI):
     """Handles startup (loading models) and shutdown (clean up)"""
     ml_models['engine'] = HybridMatchEngine()
+
+    global executor
+    workers = max(os.cpu_count() - 1, 1)
+    executor = ThreadPoolExecutor(max_workers=workers)
+
     yield
     ml_models.clear()
+    if executor:
+        executor.shutdown(wait=True)
 
 # --- DEPENDENCY INJECTION ---
 def get_engine():
@@ -20,6 +31,8 @@ def get_engine():
         raise HTTPException(status_code=503, detail="AI Engine is not ready.")
     return ml_models["engine"]
 
+
+executor: Optional[ThreadPoolExecutor] = None
 ml_models: Dict[str, HybridMatchEngine] = {}
 app = FastAPI(title="RecruitMate ML Service",
               lifespan=lifespan)
@@ -37,8 +50,12 @@ async def match_cv_to_offer(
     The 'alpha' parameter controls the weight given to the semantic score.
     """
     try:
-        # Pass data directly to the core engine class
-        result = engine.calculate_match(request)
+        loop = asyncio.get_running_loop()
+        result = await loop.run_in_executor(
+            executor,
+            engine.calculate_match,
+            request
+        )
         return result
     except Exception as e:
         # Log error in production environment

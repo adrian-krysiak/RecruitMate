@@ -18,6 +18,10 @@ env/
 local_settings.py
 db.sqlite3
 media/
+.pytest_cache
+tests/
+notebooks/
+models_cache/
 
 # --- Environment Variables ---
 .env

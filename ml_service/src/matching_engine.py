@@ -32,11 +32,6 @@ class HybridMatchEngine:
             raise RuntimeError(
                 f"Could not load the SBERT model named {SBERT_MODEL_NAME}")
 
-        try:
-            self.tfidf = TfidfVectorizer(stop_words='english')
-        except Exception:
-            raise RuntimeError("Could not initialize the TF-IDF Vectorizer")
-
         print("The engine is initialized and ready to use")
 
     def calculate_match(self, request: MatchRequest) -> MatchResponse:
@@ -116,13 +111,14 @@ class HybridMatchEngine:
         clean_cv = lemmatize_text(cv, self.nlp)
 
         try:
-            tfidf_matrix = self.tfidf.fit_transform([clean_job, clean_cv])
+            local_tfidf = TfidfVectorizer(stop_words='english')
+            tfidf_matrix = local_tfidf.fit_transform([clean_job, clean_cv])
             # Calculate cosine similarity between the two documents
             score = float(cosine_similarity(tfidf_matrix[0:1],
                                             tfidf_matrix[1:2])[0][0])
 
             # Extract common keywords
-            feature_names = np.array(self.tfidf.get_feature_names_out())
+            feature_names = np.array(local_tfidf.get_feature_names_out())
             # Multiply vectors to find non-zero overlapping terms
             job_vec = np.array(tfidf_matrix[0].todense()).flatten()
             cv_vec = np.array(tfidf_matrix[1].todense()).flatten()
