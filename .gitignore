@@ -1,9 +1,13 @@
-# --- General ---
+# General
 .DS_Store
 .vscode/
 .idea/
 
-# --- Python (Backend & ML Service) ---
+# Environment Variables
+.env
+.env.local
+
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -16,15 +20,28 @@ db.sqlite3
 media/
 models_cache/
 
-# --- Node.js (Frontend) ---
+# Node.js
 node_modules/
 build/
 dist/
+dist-ssr/
 typings/
 *.tsbuildinfo
 .npm
-*.log
+*.local
 
-# --- Environment Variables ---
-.env
-.env.local
+# Logs
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

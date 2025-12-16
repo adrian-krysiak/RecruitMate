@@ -36,5 +36,18 @@ services:
     ports:
       - "5001:5001"
 
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://ml_service:5001
+    depends_on:
+      - ml_service
+      - backend
+
 volumes:
   postgres_data:
