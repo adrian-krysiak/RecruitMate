@@ -1,0 +1,71 @@
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.navButton {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.navButton:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+}
+
+.active {
+  background-color: var(--accent-color);
+  color: var(--button-text);
+}
+
+.active:hover {
+  background-color: var(--accent-hover);
+}
+
+.navButton:disabled {
+  color: var(--text-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authButton {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s;
+  min-width: 100px;
+  text-align: center; 
+}
+
+/* .authButton:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+} */
+
+.authButton:disabled {
+  color: var(--text-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+}

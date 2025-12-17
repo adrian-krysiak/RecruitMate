@@ -1,19 +1,51 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { useMatchAnalysis } from '../../hooks/useMatchAnalysis';
 import { MatchResults } from './components/MatchResults';
-import styles from './GuestScanner.module.css';
 import { ErrorMessage } from "./components/ErrorMessage";
+import { ScannerControls } from './components/ScannerControls';
+import { CVInputSection } from './components/CVInputSection';
+import styles from './GuestScanner.module.css';
 
-export const GuestScanner = () => {
+interface GuestScannerProps {
+  isLoggedIn?: boolean;
+}
+
+export const GuestScanner = ({ isLoggedIn = false }: GuestScannerProps) => {
   const [jobDesc, setJobDesc] = useState('');
   const [cvText, setCvText] = useState('');
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [useAiParsing, setUseAiParsing] = useState(false);
+  
+  const [inputMode, setInputMode] = useState<'text' | 'file'>(() => {
+    return (sessionStorage.getItem('guestScannerInputMode') as 'text' | 'file') || 'text';
+  });
+
   const { result, loading, error, performAnalysis } = useMatchAnalysis();
-  const textAreaMinLength = 50
+
+  useEffect(() => {
+    sessionStorage.setItem('guestScannerInputMode', inputMode);
+  }, [inputMode]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setUseAiParsing(false);
+    } else {
+      setUseAiParsing(true);
+    }
+  }, [isLoggedIn]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (jobDesc && cvText) {
-      await performAnalysis(jobDesc, cvText);
+    
+    const hasCv = inputMode === 'text' ? cvText.length >= 50 : !!cvFile;
+    
+    if (jobDesc && hasCv) {
+      if (inputMode === 'file' && cvFile) {
+         console.log("Sending file:", cvFile.name);
+         await performAnalysis(jobDesc, `[FILE UPLOADED: ${cvFile.name}]`);
+      } else {
+         await performAnalysis(jobDesc, cvText);
+      }
     }
   };
 
@@ -21,23 +53,31 @@ export const GuestScanner = () => {
     <div className={styles.container}>
       <h1>RecruitMate - Guest Mode</h1>
 
+      <ScannerControls 
+        inputMode={inputMode}
+        setInputMode={setInputMode}
+        isLoggedIn={isLoggedIn}
+        useAiParsing={useAiParsing}
+        setUseAiParsing={setUseAiParsing}
+      />
+
       <form onSubmit={handleSubmit}>
         <div className={styles.grid}>
-          <textarea
-            className={styles.textarea}
-            // rows={35}
-            placeholder="Paste CV..."
-            value={cvText}
-            minLength={textAreaMinLength}
-            onChange={(e) => setCvText(e.target.value)}
-            disabled={loading}
+          
+          <CVInputSection 
+            inputMode={inputMode}
+            cvText={cvText}
+            setCvText={setCvText}
+            cvFile={cvFile}
+            setCvFile={setCvFile}
+            loading={loading}
           />
+
           <textarea
             className={styles.textarea}
-            // rows={35}
             placeholder="Paste Job Description..."
             value={jobDesc}
-            minLength={textAreaMinLength}
+            minLength={50}
             onChange={(e) => setJobDesc(e.target.value)}
             disabled={loading}
           />
@@ -45,7 +85,7 @@ export const GuestScanner = () => {
 
         <button
           type="submit"
-          disabled={loading || !jobDesc || !cvText}
+          disabled={loading || !jobDesc || (inputMode === 'text' ? !cvText : !cvFile)}
           className={styles.button}
         >
           {loading ? 'Analyzing...' : 'Scan Match'}
@@ -53,9 +93,7 @@ export const GuestScanner = () => {
       </form>
 
       <ErrorMessage error={error} />
-
       {result && <MatchResults data={result} />}
-
     </div>
   );
 };

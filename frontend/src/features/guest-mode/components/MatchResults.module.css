@@ -1,7 +1,7 @@
 .container {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--border-color);
 }
 
 .scoresWrapper {
@@ -13,21 +13,22 @@
 .scoreItem {
   font-weight: 500;
   padding: 0.5rem 1rem;
-  background-color: #f5f5f5;
+  background-color: var(--bg-secondary);
   border-radius: 4px;
+  color: var(--text-primary);
 }
 
 .detailItem {
   margin-bottom: 10px;
   padding: 15px;
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  background-color: #fff;
+  background-color: var(--input-bg);
   transition: box-shadow 0.2s;
 }
 
 .detailItem:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .detailHeader {
@@ -39,11 +40,12 @@
 
 .statusBadge {
   font-weight: bold;
+  color: var(--text-primary);
 }
 
 .detailText {
   margin: 0;
   font-size: 0.95em;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
