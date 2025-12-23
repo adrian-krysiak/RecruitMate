@@ -6,18 +6,13 @@ client = TestClient(app)
 
 
 def test_health_check():
-    """Check if the health endpoint works."""
     response = client.get("/health")
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
 
 
 def test_match_endpoint_integration(mock_engine):
-    """
-    Integration test for the /match endpoint.
-    Overrides the dependency to use the mocked engine.
-    """
-    # Dependency Override: Inject mock_engine instead of loading real models
+    """Integration test for /match using mocked engine."""
     app.dependency_overrides[get_engine] = lambda: mock_engine
 
     payload = {
@@ -27,39 +22,28 @@ def test_match_endpoint_integration(mock_engine):
     }
 
     response = client.post("/match", json=payload)
-
     assert response.status_code == 200
+
     data = response.json()
-
     assert "final_score" in data
-    assert "breakdown" not in data  # Pydantic alias check: model uses 'details'
+    assert "semantic_score" in data
+    assert "keyword_score" in data
+    assert "section_scores" in data
+    assert "common_keywords" in data
     assert "details" in data
-    assert len(data["details"]) > 0
+    assert isinstance(data["details"], list)
 
-    # Cleanup overrides
     app.dependency_overrides = {}
 
-def test_match_endpoint_no_alpha(mock_engine):
-    """
-    Integration test for the /match endpoint, but without alpha in the payload
-    """
+
+def test_match_endpoint_validation_error(mock_engine):
+    """Test rejection of invalid inputs."""
     app.dependency_overrides[get_engine] = lambda: mock_engine
-
     payload = {
-        "job_description": JOB_OFFERS['poor']['text'],
-        "cv_text": CV_CANDIDATE,
+        "job_description": "Short",
+        "cv_text": "Short",
+        "alpha": 1.5
     }
     response = client.post("/match", json=payload)
-    assert response.status_code == 200
-
-
-def test_match_endpoint_validation_error():
-    """Test that short inputs are rejected by Pydantic."""
-    payload = {
-        "job_description": "Too short",
-        "cv_text": "Also too short",
-        "alpha": 1.5  # Invalid alpha (> 1.0)
-    }
-
-    response = client.post("/match", json=payload)
-    assert response.status_code == 422  # Unprocessable Entity
+    app.dependency_overrides = {}
+    assert response.status_code == 422

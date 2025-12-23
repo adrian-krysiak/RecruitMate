@@ -6,7 +6,7 @@ from typing import Dict, Optional
 
 from fastapi import FastAPI, HTTPException, Depends
 
-from src.matching_engine import HybridMatchEngine
+from src.orchestrator import HybridMatchEngine
 from src.data_models import MatchRequest, MatchResponse
 
 
