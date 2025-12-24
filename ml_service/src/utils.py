@@ -4,17 +4,7 @@ import spacy
 from typing import List
 from spacy.tokens import Doc
 
-from src.data_models import MatchStatus
 from src.config import CHUNK_WINDOW_SIZE, CHUNK_OVERLAP_SIZE
-
-
-# Helper function definition from the previous analysis
-def get_match_status(score: float) -> MatchStatus:
-    """Helper function to label the match quality based on score."""
-    if score > 0.75: return MatchStatus.GOOD
-    if score > 0.55: return MatchStatus.MEDIUM
-    if score > 0.35: return MatchStatus.WEAK
-    return MatchStatus.NONE
 
 
 def lemmatize_text(text: str, nlp: spacy.Language) -> str:

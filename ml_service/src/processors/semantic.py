@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple, Any
 
 from spacy.language import Language
+from spacy.tokens import Doc
 from sentence_transformers import SentenceTransformer, util
 import torch
 
@@ -22,7 +23,7 @@ class SemanticProcessor:
         self.nlp = nlp
         self.model = sbert_model
 
-    def analyze(self, job_text: str, cv_sections: Dict[str, str]
+    def analyze(self, job_doc: Doc, cv_sec_docs: Dict[str, Doc]
                 ) -> Tuple[float, List[MatchDetail], Dict[str, float]]:
         """
         Main entry point for semantic analysis.
@@ -30,14 +31,14 @@ class SemanticProcessor:
         """
 
         # 1. Prepare Job Data (Signal)
-        job_chunks = self._chunk_text(job_text)
+        job_chunks = self._chunk_text(job_doc)
         if not job_chunks:
             return 0.0, [], {}
 
         job_embeddings = self.model.encode(job_chunks, convert_to_tensor=True)
 
         # 2. Prepare CV Data (flattened chunks with metadata)
-        cv_chunks_data, cv_weights = self._prepare_cv_data(cv_sections)
+        cv_chunks_data, cv_weights = self._prepare_cv_data(cv_sec_docs)
 
         if not cv_chunks_data:
             return 0.0, [], {}
@@ -56,7 +57,7 @@ class SemanticProcessor:
 
         return round(final_score, 4), details, section_breakdown
 
-    def _prepare_cv_data(self, cv_sections: Dict[str, str]
+    def _prepare_cv_data(self, cv_sec_docs: Dict[str, Doc]
                          ) -> Tuple[List[Dict[str, Any]], Any]:
         """
         Flattens CV sections into a list of chunks and a corresponding tensor of weights.
@@ -66,11 +67,11 @@ class SemanticProcessor:
         cv_chunks_data = []
         weights_list = []
 
-        for section, text in cv_sections.items():
-            if not text.strip():
+        for section, doc in cv_sec_docs.items():
+            if not doc or not doc.text.strip():
                 continue
 
-            chunks = self._chunk_text(text)
+            chunks = self._chunk_text(doc)
             weight = SECTION_WEIGHTS.get(section, 0.1)
 
             for c in chunks:
@@ -166,11 +167,10 @@ class SemanticProcessor:
                 section_breakdown[section] = 0.0
         return section_breakdown
 
-    def _chunk_text(self, text: str) -> List[str]:
+    def _chunk_text(self, doc: Doc) -> List[str]:
         """
         Splits text into sentences using the injected Spacy NLP object.
         """
-        doc = self.nlp(text)
         # Filter chunks that are too short (less than 3 words)
         chunks = [sent.text.strip()
                   for sent in doc.sents if len(sent.text.split()) > 2]

@@ -1,9 +1,10 @@
-from typing import Dict, Tuple
+from typing import Dict, List
 
 import spacy
+from spacy.tokens import Doc
 from sentence_transformers import SentenceTransformer
 
-from src.config import SPACY_MODEL_NAME, SBERT_MODEL_NAME, SECTION_WEIGHTS
+from src.config import SPACY_MODEL_NAME, SBERT_MODEL_NAME
 from src.data_models import MatchRequest, MatchResponse
 from src.parsers import CVParser, JobOfferParser
 
@@ -66,8 +67,7 @@ class HybridMatchEngine:
         cv_full_text = " ".join(
             [txt for sec, txt in cv_sections.items()])
 
-        # Job: Use extracted "Signal" (Requirements + Responsibilities + Uncategorized)
-        # Ignore 'about' (Noise)
+        # Job: Use extracted "Signal" (Requirements + Responsibilities + Education + Uncategorized)
         job_signal_text = " ".join(
             [txt for sec, txt in job_data.items()])
 
@@ -77,21 +77,25 @@ class HybridMatchEngine:
 
         # --- STEP 2: PROCESSORS EXECUTION ---
 
-        # A. NER & Gap Analysis (Keywords)
+        # A. PRE-PROCESSING
+        job_doc = self.nlp(job_signal_text)
+        cv_sec_docs: Dict[str, Doc] = {sec: self.nlp(txt) for sec, txt in cv_sections.items()}
+
+        # B. NER & Gap Analysis (Keywords)
         keyword_score, common_keywords, missing_keywords = self.ner_processor.analyze(
-            job_signal_text, cv_sections
+            job_doc, cv_sec_docs
         )
 
-        # B. Semantic Analysis (SBERT + Weighted Sections)
+        # C. Semantic Analysis (SBERT + Weighted Sections)
         semantic_score, details, section_breakdown = self.semantic_processor.analyze(
-            job_signal_text, cv_sections
+            job_doc, cv_sec_docs
         )
 
-        # C. Action Verbs (Style/Tone)
+        # D. Action Verbs (Style/Tone)
         # Analyze only narrative sections (Experience, Projects)
-        narrative_text = cv_sections.get(
-            'experience', '') + " " + cv_sections.get('projects', '')
-        action_verb_score = self._analyze_action_verbs(narrative_text)
+        narrative_docs = [cv_sec_docs.get('experience'), cv_sec_docs.get('projects')]
+        narrative_docs = [d for d in narrative_docs if d is not None]
+        action_verb_score = self._analyze_action_verbs(narrative_docs)
 
         # --- STEP 3: FALLBACK MECHANISM ---
         # If the main models failed to find ANY signal (e.g. language mismatch, empty intersection),
@@ -101,7 +105,7 @@ class HybridMatchEngine:
             # Run fallback only when necessary to save compute time,
             # OR run always if need to log it. Here we use it to boost score.
             fallback_score, fallback_keywords = self.fallback_processor.analyze(
-                job_signal_text, cv_full_text
+                job_doc, self.nlp(cv_full_text)
             )
             # Boost keywords score slightly using statistical similarity
             keyword_score = max(keyword_score, fallback_score)
@@ -144,15 +148,13 @@ class HybridMatchEngine:
             details=details
         )
 
-    def _analyze_action_verbs(self, text: str) -> float:
+    def _analyze_action_verbs(self, docs: List[Doc]) -> float:
         """
         Calculates the ratio of 'strong action verbs' to total verbs.
         Uses the shared NLP pipeline (tagger).
         """
-        if not text.strip():
+        if not docs:
             return 0.0
-
-        doc = self.nlp(text)
 
         total_verbs = 0
         action_verbs = 0
@@ -163,17 +165,19 @@ class HybridMatchEngine:
             "optimize", "build", "achieve", "solve", "launch", "orchestrate",
             "spearhead", "drive", "deliver", "execute"
         }
-
-        for token in doc:
-            if token.pos_ == "VERB":
-                total_verbs += 1
-                # Check for strong lemma OR active dependency roles (nsubj)
-                # 'nsubj' implies the candidate is the doer of the action.
-                if token.lemma_.lower() in strong_roots:
-                    action_verbs += 1
-                elif any(child.dep_ == "nsubj" for child in token.children):
-                    # Simple heuristic: if the verb has a subject, it's likely active voice
-                    action_verbs += 1
+        for doc in docs:
+            if not doc or not doc.text.strip():
+                continue
+            for token in doc:
+                if token.pos_ == "VERB":
+                    total_verbs += 1
+                    # Check for strong lemma OR active dependency roles (nsubj)
+                    # 'nsubj' implies the candidate is the doer of the action.
+                    if token.lemma_.lower() in strong_roots:
+                        action_verbs += 1
+                    elif any(child.dep_ == "nsubj" for child in token.children):
+                        # Simple heuristic: if the verb has a subject, it's likely active voice
+                        action_verbs += 1
 
         if total_verbs == 0:
             return 0.0

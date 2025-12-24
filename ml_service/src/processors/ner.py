@@ -1,6 +1,7 @@
 from typing import List, Set, Dict, Tuple
 
 from spacy.language import Language
+from spacy.tokens import Doc
 
 from src.config import SECTION_WEIGHTS
 
@@ -36,7 +37,7 @@ class NERProcessor:
         patterns = self._get_mvp_patterns()
         ruler.add_patterns(patterns)
 
-    def analyze(self, job_text: str, cv_sections: Dict[str, str]
+    def analyze(self, job_doc: Doc, cv_sec_docs: Dict[str, Doc]
                 ) -> Tuple[float, List[str], List[str]]:
         """
         Performs the Gap Analysis and calculates the Weighted Keyword Score.
@@ -46,7 +47,7 @@ class NERProcessor:
             (keyword_score, common_keywords, missing_keywords)
         """
         # 1. Extract required skills from Job Offer (Signal only)
-        job_skills = self._extract_skills(job_text)
+        job_skills = self._extract_skills(job_doc)
 
         if not job_skills:
             # Fallback: If no skills detected in job, we can't score based on keywords.
@@ -57,13 +58,12 @@ class NERProcessor:
         # Map: {'python': 1.0, 'sql': 0.65, ...} (stores max weight found for skill)
         cv_skill_weights: Dict[str, float] = {}
 
-        for section, text in cv_sections.items():
-            if not text:
+        for section, doc in cv_sec_docs.items():
+            if not doc or not doc.text.strip():
                 continue
 
             section_weight = SECTION_WEIGHTS.get(section, 0.1)
-            skills_in_section = self._extract_skills(text)
-
+            skills_in_section = self._extract_skills(doc)
             for skill in skills_in_section:
                 # Keep the highest weight (e.g., if skill is in Exp and Skills, take Exp)
                 current_max = cv_skill_weights.get(skill, 0.0)
@@ -91,14 +91,13 @@ class NERProcessor:
 
         return round(final_score, 4), common_keywords, missing_keywords
 
-    def _extract_skills(self, text: str) -> List[str]:
+    def _extract_skills(self, doc: Doc) -> List[str]:
         """
         Runs the NLP pipeline and returns unique SKILL entities (lowercase).
         """
-        if not text.strip():
+        if not doc.text.strip():
             return []
 
-        doc = self.nlp(text)
         # Use set comprehension for uniqueness
         skills_dict = {}
         for ent in doc.ents:

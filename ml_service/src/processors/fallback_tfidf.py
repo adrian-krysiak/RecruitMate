@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import spacy
+from spacy.tokens import Doc
 
 
 class FallbackProcessor:
@@ -19,7 +20,7 @@ class FallbackProcessor:
         """
         self.nlp = nlp
 
-    def analyze(self, job_text: str, cv_text: str) -> Tuple[float, List[str]]:
+    def analyze(self, job_doc: Doc, cv_doc: Doc) -> Tuple[float, List[str]]:
         """
         Calculates TF-IDF cosine similarity and extracts top common keywords.
 
@@ -28,8 +29,8 @@ class FallbackProcessor:
         """
         # 1. Preprocessing (Lemmatization)
         # We process the FULL text to catch everything
-        clean_job = self._lemmatize(job_text)
-        clean_cv = self._lemmatize(cv_text)
+        clean_job = self._lemmatize(job_doc)
+        clean_cv = self._lemmatize(cv_doc)
 
         if not clean_job or not clean_cv:
             return 0.0, []
@@ -73,21 +74,19 @@ class FallbackProcessor:
             # Handle empty vocabulary cases (e.g., text contained only stop words)
             return 0.0, []
 
-    def _lemmatize(self, text: str) -> str:
+    def _lemmatize(self, doc: Doc) -> str:
         """
         Helper: Cleans text and converts words to base form.
         Uses the injected Spacy model.
         """
-        if not text:
+        if not doc or not doc.text.strip():
             return ""
 
         # Increase max length to avoid errors on huge CVs
         self.nlp.max_length = 2000000
 
-        doc = self.nlp(text.lower())
 
         # Keep only alphabetic tokens that are not stop words
         tokens = [
-            token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
-
+            token.lemma_.lower() for token in doc if token.is_alpha and not token.is_stop]
         return " ".join(tokens)
