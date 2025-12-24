@@ -1,16 +1,25 @@
+// --- Main Response ---
 export interface MatchResponse {
   final_score: number;
-  sbert_score: number;
-  tfidf_score: number;
+
+  semantic_score: number;
+  keyword_score: number;
+  action_verb_score: number;
+
   common_keywords: string[];
+  missing_keywords: string[];
+
+  section_scores: Record<string, number>;
+
   details: MatchDetail[];
 }
 
 export interface MatchDetail {
-  requirement_chunk: string;
-  best_match_cv_chunk: string;
+  job_requirement: string;
+  best_cv_match: string;
+  cv_section: string;
   score: number;
-  status: MatchStatus;
+  raw_semantic_score?: number;
 }
 
 export const MatchStatusValues = {
