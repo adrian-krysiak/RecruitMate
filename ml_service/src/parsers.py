@@ -18,6 +18,8 @@ class BaseParser:
             )
             for section, patterns in raw_patterns.items()
         }
+        # Regex to detect bullet points AND numbered lists
+        self.bullet_cleaner = re.compile(r'^\s*(?:[-*•‣➤➔►◆▫▪]|\d+\.)\s+')
 
     def _parse_core(self, text: str) -> Dict[str, List[str]]:
         """
@@ -32,16 +34,32 @@ class BaseParser:
         current_section = self.default_section
 
         for line in lines:
-            clean_line = line.strip()
+            raw_line = line.strip()
+            if not raw_line:
+                continue
+
+            new_section = self._detect_section_header(raw_line)
+            if new_section:
+                current_section = new_section
+                continue
+            # Clean bullet points and sentence splitting artifacts
+            is_bullet = self.bullet_cleaner.match(raw_line)
+            no_punc_line = self.bullet_cleaner.sub('', raw_line) if is_bullet else raw_line
+            clean_line = no_punc_line.strip()
+
             if not clean_line:
                 continue
 
-            new_section = self._detect_section_header(clean_line)
+            # Close the previous line with a period if missing
+            if is_bullet:
+                if sections[current_section]:
+                    last_line = sections[current_section][-1]
+                    if last_line and not last_line.endswith(('.', '!', '?', ':')):
+                        sections[current_section][-1] += '.'
+            if not clean_line.endswith(('.', '!', '?', ':', ';')):
+                clean_line += '.'
 
-            if new_section:
-                current_section = new_section
-            else:
-                sections[current_section].append(clean_line)
+            sections[current_section].append(clean_line)
         return sections
 
     def _detect_section_header(self, line: str) -> Optional[str]:
@@ -60,7 +78,7 @@ class BaseParser:
         return None
 
     @staticmethod
-    def _is_likely_header(line: str, max_words: int = 7) -> bool:
+    def _is_likely_header(line: str, max_words: int = 6) -> bool:
         """
         Heuristic: Headers are usually short and don't end with sentence
         punctuation.
@@ -73,7 +91,8 @@ class BaseParser:
             return False
 
         # Check if it looks like a full sentence
-        if line.endswith(('.', '!', '?', ';', ',', ')', ']', '}')):
+        # if line.endswith(('.', '!', '?', ';', ',', ')', ']', '}')):
+        if line.endswith(('.', '!', ';', ',')):
             return False
 
         return True
@@ -134,22 +153,21 @@ class JobOfferParser(BaseParser):
             r'essential', r'technical requirements', r'you should have',
             r'who you are', r'what we look for', r'key skills',
             r'what you need', r'about you', r'preferred qualifications',
-            r'competencies', r'capabilities', r'tech stack', r'if you'
+            r'competencies', r'capabilities', r'tech stack', r'if you',
+            r'job description'
         ],
         'responsibilities': [
             r'responsibilities', r'duties', r"what you'll do",
             r'what you will do', r'your role', r'scope',
             r'day to day', r"what you['’]ll", r'key tasks',
-            r'accountabilities', r'you will'
+            r'accountabilities', r'you will', r'why join us'
         ],
         'education': [
             r'education', r'academic', r'background',
             r'qualifi', r'credentials', r'certifi'
         ],
         'about': [
-            r'about (us|the company|the role)', r'company overview',
-            r'who we are', r'why join us', r'mission?', r'vision?',
-            r'our values?', r'what we offer', r'benefits?'
+            r'company overview', r'what we offer', r'benefits?'
         ]
     }
 

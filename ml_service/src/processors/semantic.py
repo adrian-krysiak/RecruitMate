@@ -8,6 +8,11 @@ import torch
 from src.config import SECTION_WEIGHTS
 from src.data_models import MatchDetail
 
+NOISE_PHRASES = {
+    'nice to have', 'good to have', 'optional', 'benefits', 'what we offer'
+    }
+TRANS_TABLE = str.maketrans('', '', '():')
+
 
 class SemanticProcessor:
     """
@@ -53,6 +58,8 @@ class SemanticProcessor:
 
         # 4. Final Aggregation
         final_score = total_weighted_score / len(job_chunks)
+        # Clamp to keep semantic_score within [0,1]
+        final_score = max(0.0, min(final_score, 1.0))
         section_breakdown = self._calculate_section_stats(raw_scores_map)
 
         return round(final_score, 4), details, section_breakdown
@@ -72,7 +79,7 @@ class SemanticProcessor:
                 continue
 
             chunks = self._chunk_text(doc)
-            weight = SECTION_WEIGHTS.get(section, 0.1)
+            weight = SECTION_WEIGHTS.get(section, 0.5)
 
             for c in chunks:
                 cv_chunks_data.append({
@@ -106,13 +113,11 @@ class SemanticProcessor:
 
         # B. Apply Weights (Broadcasting)
         # We multiply every column j by the weight of CV chunk j
-        # If using GPU/MPS, ensure weights are on the same device
+        # Ensure weights are on the same device
         if job_emb.device != cv_weights.device:
             cv_weights = cv_weights.to(job_emb.device)
 
-        weighted_matrix = similarity_matrix * cv_weights
-
-        # C. Extract Best Matches
+        # C. Extract Best Matches (choose by raw similarity, then apply weight)
         details = []
         total_weighted_score = 0.0
 
@@ -122,14 +127,17 @@ class SemanticProcessor:
 
         # Iterate over job requirements (Rows)
         for i, job_req in enumerate(job_chunks):
-            # Find index of the highest weighted score in this row
-            best_idx = int(torch.argmax(weighted_matrix[i]))
+            # 1) Select the best raw semantic match (no weights) to avoid overweighting sections
+            best_idx = int(torch.argmax(similarity_matrix[i]))
 
-            # Extract scores
-            weighted_score = float(weighted_matrix[i][best_idx])
+            # Extract raw score and weight for that chunk
             raw_score = float(similarity_matrix[i][best_idx])
+            weight = float(cv_weights[best_idx]) if len(cv_weights) > best_idx else 1.0
 
-            # Clip weighted score to [0.0, 1.0] just in case weights > 1.0 cause overflow
+            # Apply section weight after selecting the best semantic match
+            weighted_score = raw_score * weight
+
+            # Clip weighted score to [0.0, 1.0]
             final_score = max(0.0, min(weighted_score, 1.0))
 
             # Get metadata
@@ -169,9 +177,44 @@ class SemanticProcessor:
 
     def _chunk_text(self, doc: Doc) -> List[str]:
         """
-        Splits text into sentences using the injected Spacy NLP object.
+        Chunk text by newlines first, then refine with spaCy sentencizer per line.
+        This avoids collapsing header-ish lines and keeps real sentences.
         """
-        # Filter chunks that are too short (less than 3 words)
-        chunks = [sent.text.strip()
-                  for sent in doc.sents if len(sent.text.split()) > 2]
+        chunks = []
+        noise_phrases = NOISE_PHRASES
+        trans_table = TRANS_TABLE
+
+        for line in doc.text.split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+
+            # Quick header / metadata filters
+            word_count = len(line.split())
+            if word_count < 4:  # drop very short items like "Offer.", "AWS.", "B2B"
+                continue
+            if line.endswith(':'):
+                continue
+            # if ':' in line:
+            #     before_colon = line.split(':')[0]
+            #     # allow language lines like "Languages: Polish, English (C1)"
+            #     lang_hint = 'language' in before_colon.lower() or 'languages' in before_colon.lower()
+            #     if len(before_colon.split()) <= 3 and not lang_hint:
+            #         continue
+
+            # Split the remaining line into sentences using spaCy to avoid long run-ons
+            for sent in self.nlp(line).sents:
+                sent_text = sent.text.strip()
+                if not sent_text:
+                    continue
+
+                # Re-run minimal length / noise checks on the sentence
+                if len(sent_text.split()) < 4:
+                    continue
+                clean_text = sent_text.lower().translate(trans_table).strip()
+                if clean_text in noise_phrases:
+                    continue
+
+                chunks.append(sent_text)
+
         return chunks

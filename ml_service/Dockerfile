@@ -37,6 +37,7 @@ RUN python -c "from src.config import SPACY_MODEL_NAME, SBERT_MODEL_NAME; \
     from sentence_transformers import SentenceTransformer; SentenceTransformer(SBERT_MODEL_NAME)"
 
 COPY src/ ./src/
+COPY data/ ./data/
 COPY main.py .
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5001", "--reload"]

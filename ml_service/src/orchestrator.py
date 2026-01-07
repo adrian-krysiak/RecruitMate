@@ -4,11 +4,11 @@ import spacy
 from spacy.tokens import Doc
 from sentence_transformers import SentenceTransformer
 
-from src.config import SPACY_MODEL_NAME, SBERT_MODEL_NAME
+from src.config import SPACY_MODEL_NAME, SBERT_MODEL_NAME, STRONG_ROOTS
 from src.data_models import MatchRequest, MatchResponse
 from src.parsers import CVParser, JobOfferParser
 
-# Import our specialized processors
+# Import specialized processors
 from src.processors.ner import NERProcessor
 from src.processors.semantic import SemanticProcessor
 from src.processors.fallback_tfidf import FallbackProcessor
@@ -102,6 +102,7 @@ class HybridMatchEngine:
         # we calculate TF-IDF to avoid returning a flat 0.0 which frustrates users.
 
         if keyword_score == 0.0 and not missing_keywords:
+        # if True:
             # Run fallback only when necessary to save compute time,
             # OR run always if need to log it. Here we use it to boost score.
             fallback_score, fallback_keywords = self.fallback_processor.analyze(
@@ -160,11 +161,7 @@ class HybridMatchEngine:
         action_verbs = 0
 
         # A small list of strong action roots (could be moved to config/utils)
-        strong_roots = {
-            "lead", "manage", "create", "develop", "design", "implement",
-            "optimize", "build", "achieve", "solve", "launch", "orchestrate",
-            "spearhead", "drive", "deliver", "execute"
-        }
+        strong_roots = STRONG_ROOTS
         for doc in docs:
             if not doc or not doc.text.strip():
                 continue

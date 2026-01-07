@@ -67,15 +67,24 @@ export const MatchResults = ({ data }: MatchResultsProps) => {
               <div className={styles.detailHeader}>
                 <strong className={styles.statusBadge}>{status.label}</strong>
                 <span className={styles.scoreDisplay}>Score: {detail.score.toFixed(2)}</span>
+                {detail.raw_semantic_score && (
+                  <span className={styles.scoreDisplay}>
+                    Raw Score: {detail.raw_semantic_score.toFixed(2)}
+                  </span>
+                )}
               </div>
 
               <div className={styles.metaInfo}>
                  Section: {detail.cv_section}
               </div>
 
-              <p className={styles.detailText}>
+              <p className={styles.detailText}> OFFER <br />
                 {detail.job_requirement}
               </p>
+
+                <p className={styles.detailText}> CV <br />
+                {detail.best_cv_match}
+                </p>
             </div>
           );
         })}
