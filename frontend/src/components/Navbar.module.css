@@ -57,7 +57,7 @@
   font-weight: 500;
   transition: all 0.2s;
   min-width: 100px;
-  text-align: center; 
+  text-align: center;
 }
 
 /* .authButton:hover:not(:disabled) {

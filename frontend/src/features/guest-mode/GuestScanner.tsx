@@ -4,6 +4,7 @@ import { MatchResults } from './components/MatchResults';
 import { ErrorMessage } from "./components/ErrorMessage";
 import { ScannerControls } from './components/ScannerControls';
 import { CVInputSection } from './components/CVInputSection';
+import { LoadingOverlay } from '../../components/LoadingOverlay';
 import styles from './GuestScanner.module.css';
 
 interface GuestScannerProps {
@@ -14,8 +15,8 @@ export const GuestScanner = ({ isLoggedIn = false }: GuestScannerProps) => {
   const [jobDesc, setJobDesc] = useState('');
   const [cvText, setCvText] = useState('');
   const [cvFile, setCvFile] = useState<File | null>(null);
-  const [useAiParsing, setUseAiParsing] = useState(false);
-  
+  const [useAiParsing, setUseAiParsing] = useState(isLoggedIn);
+
   const [inputMode, setInputMode] = useState<'text' | 'file'>(() => {
     return (sessionStorage.getItem('guestScannerInputMode') as 'text' | 'file') || 'text';
   });
@@ -26,34 +27,29 @@ export const GuestScanner = ({ isLoggedIn = false }: GuestScannerProps) => {
     sessionStorage.setItem('guestScannerInputMode', inputMode);
   }, [inputMode]);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      setUseAiParsing(false);
-    } else {
-      setUseAiParsing(true);
-    }
-  }, [isLoggedIn]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     const hasCv = inputMode === 'text' ? cvText.length >= 50 : !!cvFile;
-    
+
     if (jobDesc && hasCv) {
       if (inputMode === 'file' && cvFile) {
-         console.log("Sending file:", cvFile.name);
-         await performAnalysis(jobDesc, `[FILE UPLOADED: ${cvFile.name}]`);
+        console.log("Sending file:", cvFile.name);
+        await performAnalysis(jobDesc, `[FILE UPLOADED: ${cvFile.name}]`);
       } else {
-         await performAnalysis(jobDesc, cvText);
+        await performAnalysis(jobDesc, cvText);
       }
     }
   };
 
   return (
-    <div className={styles.container}>
-      <h1>RecruitMate - Guest Mode</h1>
+    <>
+      <LoadingOverlay isVisible={loading} message="Analyzing CV match..." />
+      <div className={styles.container}>
+        <h1>RecruitMate - Guest Mode</h1>
 
-      <ScannerControls 
+      <ScannerControls
         inputMode={inputMode}
         setInputMode={setInputMode}
         isLoggedIn={isLoggedIn}
@@ -63,8 +59,8 @@ export const GuestScanner = ({ isLoggedIn = false }: GuestScannerProps) => {
 
       <form onSubmit={handleSubmit}>
         <div className={styles.grid}>
-          
-          <CVInputSection 
+
+          <CVInputSection
             inputMode={inputMode}
             cvText={cvText}
             setCvText={setCvText}
@@ -94,6 +90,7 @@ export const GuestScanner = ({ isLoggedIn = false }: GuestScannerProps) => {
 
       <ErrorMessage error={error} />
       {result && <MatchResults data={result} />}
-    </div>
+      </div>
+    </>
   );
 };

@@ -10,11 +10,10 @@ export const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config) => {
-    // implement any request modifications here
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
