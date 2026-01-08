@@ -1,0 +1,795 @@
+preferredLabel,altLabels,conceptUri,hiddenLabels
+Python,"Python 3
+CPython
+Python Programming",http://data.europa.eu/private/skill/ac9ee42e-35fe-44a4-958f-0d9e5c0076c6,
+Java,"Java 8
+Java 11
+Java 17
+J2SE
+J2EE
+Jakarta EE
+JVM",http://data.europa.eu/private/skill/3126d3e2-5c12-47f7-90d5-60709c7bb043,
+JavaScript,"JS
+ECMAScript
+ES6
+Vanilla JS",http://data.europa.eu/private/skill/713df0e4-a713-4018-b692-49d0b8e1adc8,
+TypeScript,"TS
+Strict TypeScript",http://data.europa.eu/private/skill/1f8584f6-b697-4d29-9041-e1eefd9b5636,
+C++,"Cpp
+C Plus Plus
+Modern C++
+C++11
+C++14
+C++17
+C++20",http://data.europa.eu/private/skill/97a205d2-51dc-4612-af48-a7c80914e1e3,
+C#,"C Sharp
+.NET C#
+CSharp",http://data.europa.eu/private/skill/7b750214-30df-41dc-a6fc-c226783e379d,
+C,"C Language
+Embedded C",http://data.europa.eu/private/skill/9d956935-32cc-4a17-97fb-7bb279c532c1,
+Go,"Golang
+Go Language",http://data.europa.eu/private/skill/f9bdc291-2c0c-4cbf-8f71-961959a559cf,
+Rust,"Rust Lang
+Rust Programming",http://data.europa.eu/private/skill/467d3f72-f1b0-4973-9aa7-0f63d315e31b,
+PHP,"PHP 7
+PHP 8
+Hypertext Preprocessor",http://data.europa.eu/private/skill/bcce2f24-d09f-4605-bbcd-dfd58e2b073f,
+Ruby,"Ruby Lang
+Matz Ruby",http://data.europa.eu/private/skill/d465b840-8fd6-4b77-a214-53a8eef7f225,
+Swift,"Swift UI
+Swift Lang",http://data.europa.eu/private/skill/35921982-e89e-48f7-a7c0-58af7a27d486,
+Kotlin,"Kotlin JVM
+KMM
+Kotlin Multiplatform",http://data.europa.eu/private/skill/0b45254c-67d4-4632-96eb-7b2ca28198e7,
+Scala,Scala Lang,http://data.europa.eu/private/skill/26baa54c-3742-4d9e-9517-cf2edb294fe6,
+R,"R Language
+R Programming
+R Stats",http://data.europa.eu/private/skill/0610cc66-9667-46c2-aa40-bf745ea451ce,
+Matlab,"MATLAB
+Simulink",http://data.europa.eu/private/skill/fb38d1de-9bc7-4dc7-b3aa-5467eec17eea,
+Dart,Dart Lang,http://data.europa.eu/private/skill/b874c2ba-0bb9-40cb-81d2-1337dc55a2fe,
+Lua,Lua Script,http://data.europa.eu/private/skill/20671fb8-7eae-43f3-bfe0-327701cfdc86,
+Perl,"Perl 5
+Perl 6
+Raku",http://data.europa.eu/private/skill/24f2d050-6eb2-4fbc-b644-add2d77108a7,
+Haskell,Haskell Lang,http://data.europa.eu/private/skill/d0c92432-9b5b-497c-afc8-82192f9e5c3e,
+Julia,Julia Lang,http://data.europa.eu/private/skill/ec6963ab-103b-4f45-9c18-7aa54b510185,
+Groovy,Apache Groovy,http://data.europa.eu/private/skill/93aa526c-c22b-4edf-9616-4d9d315a2286,
+Shell,"Shell Scripting
+Sh
+CommandLine
+Terminal",http://data.europa.eu/private/skill/eca94989-b896-449d-9988-9062450888f2,
+Bash,"Bash Scripting
+Bourne Again Shell",http://data.europa.eu/private/skill/8630ea52-dbac-41c8-9ecf-0e97be683c06,
+PowerShell,"PS
+Pwsh
+Microsoft PowerShell",http://data.europa.eu/private/skill/86f8b036-19eb-454e-aa34-449b0d55bc99,
+VBA,"Visual Basic for Applications
+Excel VBA
+Access VBA",http://data.europa.eu/private/skill/98672fba-074c-4665-a7c7-4f6fda9c9fc4,
+Assembly,"ASM
+Assembler
+x86 Assembly
+ARM Assembly",http://data.europa.eu/private/skill/3e71a40f-9b44-435b-9d84-34c15a31c0fc,
+Objective-C,"Obj-C
+Objective C",http://data.europa.eu/private/skill/21ad569a-877e-447f-92d8-ada97a942f94,
+F#,"F Sharp
+FSharp",http://data.europa.eu/private/skill/0cd3275b-1f7a-436f-b9f2-5a26c47ede89,
+Elixir,Elixir Lang,http://data.europa.eu/private/skill/416d2cc8-b368-4efe-b8ba-2d368e29eac5,
+Clojure,Clojure Lang,http://data.europa.eu/private/skill/e4dce65c-b83d-41fb-a726-dc4ab43cd7f8,
+Solidity,"Solidity Smart Contracts
+Ethereum Development",http://data.europa.eu/private/skill/0e13a38d-700d-4493-b25c-d46c68cf8563,
+Erlang,Erlang/OTP,http://data.europa.eu/private/skill/66d37502-82e6-40e8-b3c8-0108e581d8bb,
+OCaml,Objective Caml,http://data.europa.eu/private/skill/0e886dd5-b938-4244-b643-07dca16bd688,
+Fortran,Modern Fortran,http://data.europa.eu/private/skill/8180216c-b066-4447-9a2d-dd20635c110f,
+COBOL,Cobol Language,http://data.europa.eu/private/skill/785008f5-8af3-4949-b6d8-5cc7c2d4ece9,
+Ada,Ada Language,http://data.europa.eu/private/skill/f8a06658-c5fa-4493-8654-492ab1a48f66,
+Lisp,Common Lisp,http://data.europa.eu/private/skill/6acd80c6-c1ed-45db-a616-a00a486189f1,
+Scheme,Scheme Lang,http://data.europa.eu/private/skill/c70423fb-1b0b-4655-81b5-f52d5114a840,
+Racket,Racket Lang,http://data.europa.eu/private/skill/f7a6bf84-b0f4-430c-96c9-a1e14705b6c8,
+Zig,Zig Lang,http://data.europa.eu/private/skill/0b334d74-ebe9-4e49-9302-d0292b2d7f0f,
+Crystal,Crystal Lang,http://data.europa.eu/private/skill/20fcf540-ed33-4895-9fe3-016e93ab6611,
+Nim,Nim Lang,http://data.europa.eu/private/skill/e6564771-0523-45f5-913e-d083a627e5b0,
+Tcl,Tool Command Language,http://data.europa.eu/private/skill/4014ce8d-d94d-4284-a534-a7494495e62a,
+Visual Basic,"VB.NET
+VB",http://data.europa.eu/private/skill/4425efeb-f80e-4fd1-82ff-8ede6bfdde30,
+Apex,Salesforce Apex,http://data.europa.eu/private/skill/ed8335db-191d-49dd-8cc9-3debc4635fec,
+PL/SQL,"Procedural Language extensions to SQL
+Oracle PL/SQL",http://data.europa.eu/private/skill/9da70987-5839-4a07-a201-55f188dfbcb8,
+T-SQL,"Transact-SQL
+MSSQL T-SQL",http://data.europa.eu/private/skill/a10402b4-b120-4886-86d6-278f94e14902,
+SAS,"SAS Programming
+Statistical Analysis System",http://data.europa.eu/private/skill/41c6816e-ec84-411a-9a67-cafc344d4b61,
+ABAP,"Advanced Business Application Programming
+SAP ABAP",http://data.europa.eu/private/skill/012b960d-5c6a-46fd-b13a-77980839bf8c,
+HTML,"HTML5
+HyperText Markup Language
+XHTML",http://data.europa.eu/private/skill/3f62c2a8-92d0-4c7f-97c4-78c0f2d041a3,
+CSS,"CSS3
+Cascading Style Sheets",http://data.europa.eu/private/skill/7712f103-026f-4fba-ac16-d5ac55b69d8a,
+SASS,"SCSS
+Syntactically Awesome Style Sheets",http://data.europa.eu/private/skill/d659b1f8-18f1-467a-82ae-6738d5ae8e88,
+LESS,Less.js,http://data.europa.eu/private/skill/5c54c08b-258b-4047-b400-cade1b85a3dd,
+React,"React.js
+ReactJS
+React JS",http://data.europa.eu/private/skill/e7e745c5-de9d-4481-a463-68936d839552,
+Angular,"Angular 2+
+AngularJS
+Angular Framework",http://data.europa.eu/private/skill/19cbf254-7ce8-447e-b072-1bb222e4b649,
+Vue,"Vue.js
+VueJS
+Vue 2
+Vue 3",http://data.europa.eu/private/skill/2e18585b-973a-4088-a0ea-4645beb9bb3f,
+Svelte,"Svelte.js
+SvelteJS",http://data.europa.eu/private/skill/ef7c5693-7c01-4591-8d03-2096c70edf22,
+SvelteKit,,http://data.europa.eu/private/skill/5069e784-defa-4455-bea3-62f736e825bd,
+Next.js,"NextJS
+Next
+Vercel Next.js",http://data.europa.eu/private/skill/e87238f5-a099-4e12-989e-44d6ca5a945a,
+Nuxt.js,"Nuxt
+NuxtJS",http://data.europa.eu/private/skill/64c26c62-c6cb-44c6-a558-b3a05a668c5f,
+Redux,"Redux Toolkit
+RTK",http://data.europa.eu/private/skill/9828937c-c17a-4cbb-bc92-fa56fc56500c,
+MobX,MobX State Tree,http://data.europa.eu/private/skill/bc9e97cc-dd74-417e-8b02-49ca27204058,
+Tailwind CSS,"Tailwind
+TailwindCSS",http://data.europa.eu/private/skill/c5b81db2-6dc6-4184-b7f5-6f6b78f664bb,
+Bootstrap,Twitter Bootstrap,http://data.europa.eu/private/skill/1623f212-eb53-4fe6-8f03-0cde4ac13ec1,
+Material UI,"MUI
+Material Design",http://data.europa.eu/private/skill/27952a8e-b587-4c18-90f5-85264da6865d,
+Webpack,Webpack Bundler,http://data.europa.eu/private/skill/00fbebf4-4734-43fe-811b-304e7e1418d7,
+Vite,ViteJS,http://data.europa.eu/private/skill/a5d3addb-9e40-4f96-91e3-f9a3f1abcf7a,
+Babel,BabelJS,http://data.europa.eu/private/skill/5a44ebf9-4d71-4ec1-9ead-f9e4cc322975,
+npm,Node Package Manager,http://data.europa.eu/private/skill/8de72bc5-e628-4c0b-855c-b33ff2715931,
+Yarn,Yarn Package Manager,http://data.europa.eu/private/skill/aff01b6b-74bc-4c12-bed0-59c22bd58807,
+pnpm,Performant NPM,http://data.europa.eu/private/skill/e825421b-9691-448e-b034-ea3b2cfcf21e,
+jQuery,JQuery,http://data.europa.eu/private/skill/cbfb3496-617a-4072-9c9d-d1e79e66f02b,
+AJAX,Asynchronous JavaScript and XML,http://data.europa.eu/private/skill/8761ea6d-0075-4cec-b6a7-dd22267b8106,
+DOM,Document Object Model,http://data.europa.eu/private/skill/ad59a3f6-3802-444c-a13c-47ee6b066f53,
+WebAssembly,Wasm,http://data.europa.eu/private/skill/e8a31b5c-772a-46b2-9f47-9b89bc31c54c,
+SolidJS,Solid,http://data.europa.eu/private/skill/1234fd92-e0de-4e53-99db-032db4d43a83,
+Alpine.js,AlpineJS,http://data.europa.eu/private/skill/d7c784fa-2223-4303-aa7c-cdf3dd074a8f,
+Lit,LitElement,http://data.europa.eu/private/skill/e4930377-4785-4883-bce1-375ce74bf624,
+Ember.js,"Ember
+EmberJS",http://data.europa.eu/private/skill/0147ee29-b3db-4ec7-acd2-c3a4d9032efa,
+Backbone.js,Backbone,http://data.europa.eu/private/skill/b7c5aa51-7793-4803-8af6-2a292770021a,
+Preact,PreactJS,http://data.europa.eu/private/skill/38436cb4-e29e-4824-8548-9ecec19463aa,
+Gulp,Gulp.js,http://data.europa.eu/private/skill/a1fc0765-53aa-465d-9e1a-b5e846ea8576,
+Grunt,Grunt.js,http://data.europa.eu/private/skill/c0adf153-df13-4569-b230-259c1f24f262,
+RxJS,Reactive Extensions for JavaScript,http://data.europa.eu/private/skill/3ab469c9-4e4b-4894-823c-618b29a057c8,
+Zod,Zod Validation,http://data.europa.eu/private/skill/277d7989-dc9b-47cf-8e3a-c3d7e1545bbc,
+Yup,Yup Validation,http://data.europa.eu/private/skill/1a466456-2c78-4464-98bc-0fea45363515,
+React Query,"TanStack Query
+React-Query",http://data.europa.eu/private/skill/6860e684-12fa-4c84-ae0e-650ff6c68f21,
+Storybook,Storybook JS,http://data.europa.eu/private/skill/2b2c5af4-c7bc-47a4-bc43-4d9f7191dfa3,
+Chakra UI,Chakra,http://data.europa.eu/private/skill/561a7b19-5c9e-42f7-a167-60bf62c422ed,
+Ant Design,AntD,http://data.europa.eu/private/skill/8bb19d5e-2bb6-45b6-9339-fa76bb6e6ac9,
+Bulma,Bulma CSS,http://data.europa.eu/private/skill/1a9c0b7f-7a10-4080-9812-1bde49af317b,
+Foundation,Foundation CSS,http://data.europa.eu/private/skill/38f78d71-5c37-4fb6-9baf-6edb2efff87e,
+Three.js,ThreeJS,http://data.europa.eu/private/skill/5d282e20-219e-4a13-8729-9afe369022be,
+WebGL,Web Graphics Library,http://data.europa.eu/private/skill/8fce6f5a-21e9-47ff-b41d-cdef1e504b0e,
+Canvas API,HTML5 Canvas,http://data.europa.eu/private/skill/e404a71b-470d-4565-9c8f-a677a1e9eea9,
+PWA,"Progressive Web Apps
+Progressive Web App",http://data.europa.eu/private/skill/8baf67a2-8504-4f50-b39f-be58abbe9073,
+Node.js,"Node
+NodeJS
+Node JS
+Server-side JavaScript",http://data.europa.eu/private/skill/9e6395d8-08e9-4e9b-91bf-155af7fe6ac0,
+Express.js,"Express
+ExpressJS",http://data.europa.eu/private/skill/adf07f1d-24ef-4f01-bbb5-090d656cf2eb,
+NestJS,"Nest
+Nest Framework",http://data.europa.eu/private/skill/a5f0ab4f-1de0-40e4-bb47-61c38354c612,
+Django,"Django Framework
+Django REST Framework
+DRF",http://data.europa.eu/private/skill/9b3cb900-0beb-4d66-a15c-fff1986da538,
+Flask,Flask Framework,http://data.europa.eu/private/skill/e34d686a-8293-4616-820a-c232d8b765b9,
+FastAPI,Fast API,http://data.europa.eu/private/skill/6e0e4590-7283-46d7-bbe4-01cc0a25ab62,
+Spring,"Spring Framework
+Spring MVC",http://data.europa.eu/private/skill/8d5ac9f4-6877-41ad-8a8c-d7744b77726d,
+Spring Boot,SpringBoot,http://data.europa.eu/private/skill/00405405-bc74-4738-8ab1-11229134c38c,
+Hibernate,Hibernate ORM,http://data.europa.eu/private/skill/c8e3f4d5-e2cd-464b-aa98-54d299b9baf7,
+ASP.NET,"ASP.NET MVC
+ASP.NET Web API",http://data.europa.eu/private/skill/532969ba-2427-498f-b169-d18c7b7ab102,
+.NET Core,".NET 5
+.NET 6
+.NET 7
+.NET 8
+DotNet Core",http://data.europa.eu/private/skill/21d90c97-54df-4fd1-a185-dc68a8aaab4c,
+Entity Framework,"EF Core
+Entity Framework Core",http://data.europa.eu/private/skill/cc85b1ae-87f6-4e63-aa81-50a3b0402e92,
+Laravel,Laravel Framework,http://data.europa.eu/private/skill/0beae3b0-403a-4ee6-a6c8-c245f45be449,
+Symfony,Symfony Framework,http://data.europa.eu/private/skill/74cc7f15-58cb-450e-8af4-5c02b465ad27,
+Ruby on Rails,"Rails
+RoR",http://data.europa.eu/private/skill/a3dea8c2-e695-4453-bbff-90248ef0bd1e,
+GraphQL,"GQL
+Apollo GraphQL",http://data.europa.eu/private/skill/6051dae4-1734-4f24-9539-61e4243e898c,
+REST,"REST API
+Restful Services
+Representational State Transfer",http://data.europa.eu/private/skill/a58aced6-0065-4aa5-a320-07a73cab3242,
+RESTful API,Rest API,http://data.europa.eu/private/skill/626f740e-edbf-4776-8c55-47abcb3a3b87,
+gRPC,Google Remote Procedure Call,http://data.europa.eu/private/skill/26451019-03c4-4b8e-9eeb-675908196511,
+SOAP,Simple Object Access Protocol,http://data.europa.eu/private/skill/1a17b94b-2e25-4fe5-abe9-3f30fcb4c77b,
+Microservices,"Microservices Architecture
+Micro-services",http://data.europa.eu/private/skill/1fbaf92c-bbcc-48c7-9ec6-a84292ab786d,
+Serverless,"Serverless Architecture
+AWS Lambda
+Azure Functions",http://data.europa.eu/private/skill/b9e57045-8473-4777-b15a-3ab26c3f5c30,
+WebSockets,"WS
+Socket.io",http://data.europa.eu/private/skill/5602e462-8309-4627-9a12-b5d313f258f2,
+RabbitMQ,Rabbit MQ,http://data.europa.eu/private/skill/987b7bb1-db1e-4428-a9d3-c35cdaedb742,
+Kafka,"Apache Kafka
+Confluent Kafka",http://data.europa.eu/private/skill/9345bc3a-29e7-4d49-ad0f-fb01871ac186,
+ActiveMQ,Apache ActiveMQ,http://data.europa.eu/private/skill/875764c2-36cd-43b5-9d59-3dc7d467a942,
+Redis,"Redis Cache
+Redis DB",http://data.europa.eu/private/skill/d256c172-be87-4231-9e84-9257ebe85fd6,
+Celery,Celery Task Queue,http://data.europa.eu/private/skill/bda17a71-efc9-4580-b42d-58054343b11f,
+Nginx,NGINX Web Server,http://data.europa.eu/private/skill/06408c5a-681e-43b1-86ea-361f31fac8f5,
+Apache,"Apache HTTP Server
+Apache Web Server",http://data.europa.eu/private/skill/831ff2ea-7ade-459d-ae45-332680420503,
+Phoenix,"Phoenix Framework
+Elixir Phoenix",http://data.europa.eu/private/skill/8e7f113c-f5bd-4578-a4c5-98658e7a3247,
+Gin,Gin Gonic,http://data.europa.eu/private/skill/3dafaa4f-1824-4b61-a5e5-5d37963d3e86,
+Echo,Echo Framework,http://data.europa.eu/private/skill/893dd410-99b5-4d93-b07a-c9a6bc43c26e,
+Koa,Koa.js,http://data.europa.eu/private/skill/eb1a68a4-c992-4625-b98d-2ab5284c7074,
+Sails.js,Sails,http://data.europa.eu/private/skill/6c55af24-9344-4141-8d2a-584d272cd218,
+Fastify,FastifyJS,http://data.europa.eu/private/skill/0bba9ada-4b3c-4d60-899d-babf8a7d8870,
+TypeORM,,http://data.europa.eu/private/skill/b93636f2-20dd-4105-b325-515aebba4baa,
+Prisma,Prisma ORM,http://data.europa.eu/private/skill/4c6c9683-1de3-40f4-a740-b64274a55116,
+Sequelize,Sequelize ORM,http://data.europa.eu/private/skill/6d277ca7-5875-4d81-958b-b58ac58f152f,
+Mongoose,Mongoose ODM,http://data.europa.eu/private/skill/842db219-17e5-432a-986b-9398e45c8940,
+OpenAPI,Swagger Specification,http://data.europa.eu/private/skill/a5f1c9c7-3dc3-41fd-a25c-2da8fcfc45d1,
+Swagger,Swagger UI,http://data.europa.eu/private/skill/cdcc25e7-f1c2-4821-9d61-0494119916a0,
+Postman,Postman API Tool,http://data.europa.eu/private/skill/6a158aa6-6cf1-41f8-9dd2-e5b544a344f2,
+Insomnia,Insomnia REST Client,http://data.europa.eu/private/skill/e435e64d-219c-47af-afa8-9426a2e21752,
+Apigee,Google Apigee,http://data.europa.eu/private/skill/ce240cc1-001c-49f4-915f-a8ccb84cf180,
+Kong,Kong Gateway,http://data.europa.eu/private/skill/bff92b7b-5866-4905-8b0e-d91192cc8c2c,
+WSO2,WSO2 API Manager,http://data.europa.eu/private/skill/fffa0d65-767e-498c-8997-2795fee0caab,
+ZeroMQ,"0MQ
+ZMQ",http://data.europa.eu/private/skill/0d56c55d-73bf-42e5-8a4d-fa871f99397a,
+MQTT,Message Queuing Telemetry Transport,http://data.europa.eu/private/skill/7ebb4d95-d496-4220-a673-a9f33fa17595,
+AMQP,Advanced Message Queuing Protocol,http://data.europa.eu/private/skill/803d42c1-3794-44e6-8786-2ad50a68251a,
+WebRTC,Web Real-Time Communication,http://data.europa.eu/private/skill/ff95bf55-0aad-4582-8109-432e31ca061b,
+Socket.io,SocketIO,http://data.europa.eu/private/skill/bdf2c767-775c-4de4-b80e-1552c57153be,
+WordPress,"WP
+WordPress CMS",http://data.europa.eu/private/skill/97cbcbed-79bb-4cd6-a7f5-a0d1767176a5,
+Drupal,Drupal CMS,http://data.europa.eu/private/skill/a64fb02e-397a-44c7-a10d-1f541fa62221,
+Joomla,Joomla CMS,http://data.europa.eu/private/skill/2d93bfa7-1dbf-4d4f-97e8-22398afaa008,
+Magento,Adobe Commerce,http://data.europa.eu/private/skill/8d1f55b6-f594-4d7d-8c42-8d10329a255d,
+Shopify,"Shopify Plus
+Liquid",http://data.europa.eu/private/skill/4eaf9b29-0e88-480d-9d4b-065fde9fde75,
+WooCommerce,Woo,http://data.europa.eu/private/skill/0def1b27-bb0f-41a7-af13-158fd11e4508,
+BigCommerce,,http://data.europa.eu/private/skill/d26fd251-40d5-45a1-be81-4d748f6307be,
+Strapi,Strapi Headless CMS,http://data.europa.eu/private/skill/49286a41-c833-4326-a82c-813e84e93fb8,
+Contentful,Contentful CMS,http://data.europa.eu/private/skill/b87e6d87-de43-4489-8171-9a968cec6283,
+Sanity,Sanity.io,http://data.europa.eu/private/skill/8eb0ad3b-ff57-4d8a-ae05-c9daf0fce275,
+Ghost,Ghost CMS,http://data.europa.eu/private/skill/061bea65-b76c-4aa8-b395-7273e2b34abd,
+Salesforce Commerce Cloud,"SFCC
+Demandware",http://data.europa.eu/private/skill/d86100ee-e039-4de2-bc50-c37b4f19ccaa,
+SAP Hybris,SAP Commerce Cloud,http://data.europa.eu/private/skill/e2c46fee-31f7-4435-891b-e2ff840495f1,
+PrestaShop,,http://data.europa.eu/private/skill/db89c9b8-ff1f-44f2-9ef9-bc3a1bdfc8c8,
+Wix,,http://data.europa.eu/private/skill/a62d67a9-5fd9-4b61-bda3-3afedeb02dc1,
+Webflow,,http://data.europa.eu/private/skill/9053827b-ae26-4c39-abf9-14bce40f2785,
+Squarespace,,http://data.europa.eu/private/skill/428433a8-90c7-46cb-9e72-9c4e4ff136f5,
+Adobe Experience Manager,AEM,http://data.europa.eu/private/skill/68b43ce3-ce13-46db-ad46-0f2407fc92d1,
+Sitecore,Sitecore CMS,http://data.europa.eu/private/skill/bc5389a4-f287-4b51-ac47-6df16e8cc62a,
+SQL,"Structured Query Language
+ANSI SQL",http://data.europa.eu/private/skill/935e8c03-e97d-4b66-a407-6f9f3cc935a7,
+NoSQL,"Non-relational database
+Not Only SQL",http://data.europa.eu/private/skill/7b5f6188-5fbc-40a2-9a25-8a6eda8673b9,
+PostgreSQL,"Postgres
+PostgresQL",http://data.europa.eu/private/skill/14109a3c-1f8c-4a04-931f-05a7bb7d5aa8,
+MySQL,My SQL,http://data.europa.eu/private/skill/b67f4164-feb9-4632-b692-dccc38b911f0,
+MariaDB,,http://data.europa.eu/private/skill/97c35212-e296-46a4-9792-269b6552884f,
+Oracle,"Oracle Database
+Oracle DB
+PL/SQL",http://data.europa.eu/private/skill/860f379b-41a5-43a5-893f-d33de55bd3b9,
+SQL Server,"MSSQL
+Microsoft SQL Server
+T-SQL",http://data.europa.eu/private/skill/7f047a64-9c11-4203-acb9-963c997a2f04,
+SQLite,SQLite3,http://data.europa.eu/private/skill/a0037e41-a1c0-4f83-9be5-e162b2d3f2f7,
+MongoDB,"Mongo
+Mongo DB",http://data.europa.eu/private/skill/17f12df4-528d-4a5d-bdad-d50e2958ccc7,
+Cassandra,Apache Cassandra,http://data.europa.eu/private/skill/042cf34b-03cb-4c2d-b397-5f99fb098c68,
+DynamoDB,AWS DynamoDB,http://data.europa.eu/private/skill/3d733249-9dd2-4d21-be07-628e1483fab5,
+Cosmos DB,Azure Cosmos DB,http://data.europa.eu/private/skill/7ba79575-df34-426a-9de7-38f9255dd8de,
+Couchbase,,http://data.europa.eu/private/skill/fa62b13f-721f-4e58-9016-e8c133bef709,
+Elasticsearch,"ELK
+Elastic",http://data.europa.eu/private/skill/74cfcf0f-dc12-4881-aaf0-aefb1f4e63d0,
+Solr,Apache Solr,http://data.europa.eu/private/skill/81653c4b-9a50-4eb6-80d1-d59b33a1f6de,
+Neo4j,Graph Database,http://data.europa.eu/private/skill/5ca517e2-b8d4-4cc9-ab8d-a11e02614047,
+Memcached,,http://data.europa.eu/private/skill/0b9ccca3-3d61-4398-8fcb-69fca33dd5b6,
+Snowflake,Snowflake Data Warehouse,http://data.europa.eu/private/skill/c1858c4b-dd1e-4362-83b2-b001c23b2367,
+BigQuery,"Google BigQuery
+GBQ",http://data.europa.eu/private/skill/351c580b-bf38-46f9-b37a-fc9a2c6c0b80,
+Redshift,AWS Redshift,http://data.europa.eu/private/skill/7150d68e-a097-4de2-a46a-0cd694def4e6,
+Databricks,"Azure Databricks
+Delta Lake",http://data.europa.eu/private/skill/bbb829b5-0e3a-4259-9c81-39ed63f2bb4e,
+Spark,"Apache Spark
+Spark Core",http://data.europa.eu/private/skill/810e07b1-2ddb-4d73-92e3-040160ccad41,
+PySpark,Spark Python,http://data.europa.eu/private/skill/05a19e99-5142-4087-b569-190b1212ab3e,
+Hadoop,"Apache Hadoop
+HDFS",http://data.europa.eu/private/skill/73b0123d-05d7-431c-9d40-daea408ec800,
+Hive,Apache Hive,http://data.europa.eu/private/skill/07d3e449-1c48-42fc-97d2-a89772ffa1cc,
+Presto,PrestoDB,http://data.europa.eu/private/skill/92733ac7-4372-479b-823f-b372aadb22e4,
+Trino,TrinoDB,http://data.europa.eu/private/skill/a008366b-04e6-4d8b-9d8c-8997095e0ad2,
+Airflow,Apache Airflow,http://data.europa.eu/private/skill/f35f533d-60b1-470e-97d6-a833ae9fb999,
+dbt,data build tool,http://data.europa.eu/private/skill/360812bb-83de-418e-9527-d406bd72f76c,
+ETL,"Extract Transform Load
+Data Pipelines",http://data.europa.eu/private/skill/896a0f18-75fe-4817-a568-040134a8783e,
+ELT,Extract Load Transform,http://data.europa.eu/private/skill/149811fd-acc3-4260-99b8-2690bcf397e4,
+Data Warehousing,"DWH
+Data Warehouse",http://data.europa.eu/private/skill/b235f803-44d2-426a-9914-fe852773e911,
+Data Lake,Data Lakehouse,http://data.europa.eu/private/skill/02d3a394-070c-4e3c-a7d8-0ca3909b92bc,
+Data Modeling,"Dimensional Modeling
+Star Schema
+Snowflake Schema",http://data.europa.eu/private/skill/8a837a3a-791a-4015-b473-31c74a3566a5,
+Looker,Google Looker,http://data.europa.eu/private/skill/87921040-7f57-4128-b6fe-001dd80c96ec,
+Tableau,"Tableau Desktop
+Tableau Server",http://data.europa.eu/private/skill/8ee61851-1b94-422b-8f9b-9271999859fe,
+Power BI,"Microsoft Power BI
+PBI
+DAX",http://data.europa.eu/private/skill/5969a589-cfde-41d5-826c-54a6acb2d458,
+Qlik,"QlikView
+QlikSense",http://data.europa.eu/private/skill/dbb72276-f879-419e-9bb0-8df9c42819cc,
+Superset,Apache Superset,http://data.europa.eu/private/skill/194b654e-48f1-458f-b12f-0dc410a1ff22,
+ClickHouse,,http://data.europa.eu/private/skill/dbb00515-0923-45fc-9b1a-7036ce569253,
+Druid,Apache Druid,http://data.europa.eu/private/skill/65b37c4f-4af5-418f-9065-2bfeec4cec72,
+Greenplum,,http://data.europa.eu/private/skill/92dda0b1-546c-43a6-883d-6880c350c88d,
+Teradata,,http://data.europa.eu/private/skill/bf049cbd-0dc4-45fd-b7c4-95b6e427c87c,
+Informatica,Informatica PowerCenter,http://data.europa.eu/private/skill/5aa1e94e-d625-4dd1-86d3-e9506c6545bb,
+Talend,Talend Open Studio,http://data.europa.eu/private/skill/ee242f98-3f9a-455d-a522-a7d4edb88399,
+Matillion,,http://data.europa.eu/private/skill/722ca696-eba0-45bd-ad4c-3f709da4c1b1,
+Alteryx,,http://data.europa.eu/private/skill/d2d89d8f-7507-4fda-8ed9-1d8818d48132,
+Pentaho,"Pentaho Data Integration
+Kettle",http://data.europa.eu/private/skill/9a2a56a0-8bcc-4406-ac08-fd9ab3dbd9ac,
+SSIS,SQL Server Integration Services,http://data.europa.eu/private/skill/8d22ac9d-a884-4a04-81fd-5f521d2b9459,
+SSAS,SQL Server Analysis Services,http://data.europa.eu/private/skill/a5359ff9-22c9-483c-a21b-0d81256d1dc7,
+SSRS,SQL Server Reporting Services,http://data.europa.eu/private/skill/22a3815c-3b1f-48e2-bddb-7310dddbb69e,
+DBeaver,,http://data.europa.eu/private/skill/a740d656-c361-4292-9aed-a3308e14c018,
+DataGrip,,http://data.europa.eu/private/skill/87fd5f56-3106-49bc-b13e-b63b04406b38,
+Toad,Toad for Oracle,http://data.europa.eu/private/skill/2ad15f06-183f-4e8e-a488-7d8da284f580,
+Liquibase,,http://data.europa.eu/private/skill/fc685f64-2dca-409d-a4e3-35600f11ef89,
+Flyway,,http://data.europa.eu/private/skill/3b79cf89-c472-48ce-b02e-4062d24d938c,
+Realm,Realm DB,http://data.europa.eu/private/skill/3d2aa01d-1ff4-45a1-89af-5e850a3176d1,
+Firebase Realtime Database,Firebase DB,http://data.europa.eu/private/skill/5295fdca-ddf4-4586-8c2c-203acd3f76e0,
+Firestore,Cloud Firestore,http://data.europa.eu/private/skill/4660746f-7598-46d2-986f-c51cd139a016,
+Supabase,,http://data.europa.eu/private/skill/7643feb5-a9ea-4991-b712-88751169e1e1,
+CockroachDB,Cockroach,http://data.europa.eu/private/skill/db5a9229-c8b1-4e1e-b7f3-a50419de659f,
+TiDB,,http://data.europa.eu/private/skill/2328c11d-70d3-42b1-9946-2ecce86ecb1d,
+Pinecone,Pinecone DB,http://data.europa.eu/private/skill/bdbb8acd-869e-4be7-bedf-7eb1eea13389,
+Milvus,Milvus Vector DB,http://data.europa.eu/private/skill/aab4ec43-3851-4294-9543-5de7598ec4dc,
+Weaviate,,http://data.europa.eu/private/skill/c5e436c8-897b-4945-a40d-1cd03214a7cf,
+Chroma,ChromaDB,http://data.europa.eu/private/skill/4010fd65-52b1-4223-8583-7e6d3637cbf6,
+Qdrant,,http://data.europa.eu/private/skill/4888a948-9bdb-4683-ba57-2cf722586b1e,
+Vespa,Yahoo Vespa,http://data.europa.eu/private/skill/b2afc77b-3abf-4737-9094-dc77b79db6a2,
+Faiss,Facebook AI Similarity Search,http://data.europa.eu/private/skill/4f13a0a3-1112-4afc-a711-e8f79aaa78f1,
+Opensearch,AWS Opensearch,http://data.europa.eu/private/skill/14c81f30-0c66-4ad8-aed6-f47cc0ba8002,
+LanceDB,,http://data.europa.eu/private/skill/c922dd6b-2a84-41f6-b5d9-02a6df996ebd,
+Zilliz,,http://data.europa.eu/private/skill/4c8289fd-422e-407c-982e-149518dbf766,
+Machine Learning,ML,http://data.europa.eu/private/skill/058c548e-7bf6-435c-9e05-8c1b2c2f4e17,
+Deep Learning,"DL
+Neural Networks
+ANN
+CNN
+RNN",http://data.europa.eu/private/skill/cb2a5d30-9651-4cc6-bdce-41ef47797854,
+Artificial Intelligence,AI,http://data.europa.eu/private/skill/c80dcf4a-e910-4aad-9f36-85f863ddf5d8,
+NLP,"Natural Language Processing
+Computational Linguistics",http://data.europa.eu/private/skill/1cf4698d-ab7c-426c-b3cf-049d01dbff9d,
+Computer Vision,"CV
+Image Processing",http://data.europa.eu/private/skill/e90ca73c-cc08-4e5c-b3f7-a843585036f0,
+Reinforcement Learning,RL,http://data.europa.eu/private/skill/b5612818-1250-45a5-b893-57c7d6665702,
+Generative AI,GenAI,http://data.europa.eu/private/skill/8276a1a5-95af-4603-8968-0b88bcb392c6,
+LLM,"Large Language Models
+GPT
+Foundation Models",http://data.europa.eu/private/skill/487ca152-20b7-434c-9c95-a14d8ca90cb0,
+RAG,Retrieval-Augmented Generation,http://data.europa.eu/private/skill/7223ff51-2362-463a-9b45-e06b3e4b01cc,
+Prompt Engineering,Prompting,http://data.europa.eu/private/skill/d365fe0b-6031-45d1-8312-81432e2d1aa1,
+Data Science,DS,http://data.europa.eu/private/skill/bec8ade8-213a-468b-9504-1ffae60269c4,
+Scikit-learn,"sklearn
+scikit",http://data.europa.eu/private/skill/9ee38783-4f37-4a5e-97ed-86a9417e57a7,
+TensorFlow,"TF
+Tensor Flow",http://data.europa.eu/private/skill/b68d372a-7d29-4fba-8bf3-eb9f3715afef,
+Keras,,http://data.europa.eu/private/skill/975c624a-8e31-4c0f-b654-e8705320ed62,
+PyTorch,Torch,http://data.europa.eu/private/skill/a9f1fd85-7c93-41ac-a359-854699098212,
+Pandas,"pd
+Python Pandas",http://data.europa.eu/private/skill/147a1248-9e53-4179-9d8d-64fc93f84149,
+NumPy,"np
+Numerical Python",http://data.europa.eu/private/skill/2a8470f9-c88f-429b-8479-44a2bffe1554,
+SciPy,Scientific Python,http://data.europa.eu/private/skill/a57ad1d7-f587-46b1-9949-8c24241243b7,
+Matplotlib,Pyplot,http://data.europa.eu/private/skill/94a2ba7a-a01a-4d2e-b251-98bba866b69f,
+Seaborn,sns,http://data.europa.eu/private/skill/c74d91fc-71b6-485b-b291-4d9e8a7902c2,
+Plotly,Plotly Dash,http://data.europa.eu/private/skill/1b13b4b5-92d7-4509-975c-6f97a750f47e,
+OpenCV,cv2,http://data.europa.eu/private/skill/31f444d3-1b3a-4942-8556-7a98a54f7761,
+NLTK,Natural Language Toolkit,http://data.europa.eu/private/skill/fe76b255-8db8-4b8a-887e-6f8582936a2e,
+Spacy,spaCy,http://data.europa.eu/private/skill/fe79bca3-85b8-4246-99c1-d75cda91e538,
+Hugging Face,"HF
+Transformers Library",http://data.europa.eu/private/skill/a06de359-a069-45c5-8beb-b72444ce4b8e,
+Transformers,"BERT
+GPT
+T5",http://data.europa.eu/private/skill/1a96d48c-6e23-4a16-ac44-dd9424f31cab,
+LangChain,LangChain Framework,http://data.europa.eu/private/skill/731a7be0-7596-4806-9336-d793a3d19dea,
+LlamaIndex,GPT Index,http://data.europa.eu/private/skill/8e416bf8-a16d-478f-9145-4d55641537a5,
+OpenAI API,"GPT-4
+GPT-3.5
+ChatGPT API",http://data.europa.eu/private/skill/43976852-7207-4c04-ad44-4bf7a2ca4a53,
+MLOps,Machine Learning Operations,http://data.europa.eu/private/skill/93e10efb-516f-4a37-93c8-a6b8f8ad476f,
+MLflow,,http://data.europa.eu/private/skill/a2500a3f-6638-4daa-b867-7cb7c01529a2,
+Weights & Biases,"W&B
+WandB",http://data.europa.eu/private/skill/c551f2ea-261f-4770-9f26-f518a5e151a1,
+SageMaker,AWS SageMaker,http://data.europa.eu/private/skill/b1cea22d-3272-4ffd-9ad4-3364c6f97524,
+Vertex AI,Google Vertex AI,http://data.europa.eu/private/skill/ee4c1ab1-47ea-475d-9f32-9b72b2177512,
+XGBoost,Extreme Gradient Boosting,http://data.europa.eu/private/skill/6f40e2b9-4c2f-417e-ae25-9e8526e08e33,
+LightGBM,LGBM,http://data.europa.eu/private/skill/5cc9a605-54a1-4b51-9bd4-2af281a924c5,
+CatBoost,,http://data.europa.eu/private/skill/9be8de0f-c629-4ded-9b05-04bc90c7b82b,
+AutoGluon,,http://data.europa.eu/private/skill/076795f3-bbb1-4122-88c7-85bd7f5f0f8f,
+Ray,Ray Framework,http://data.europa.eu/private/skill/ba96de82-9b1c-4714-a9ae-f4cfded9ba82,
+Jax,Google Jax,http://data.europa.eu/private/skill/e99cfeae-2ab0-4155-8df8-32253def4a60,
+Stable Diffusion,Stability AI,http://data.europa.eu/private/skill/ec562329-d65b-46e3-9963-27341a083ea6,
+Midjourney,,http://data.europa.eu/private/skill/7d19f3de-d881-4456-89ff-c57a3c2d12a9,
+DALL-E,"Dall-E 2
+Dall-E 3",http://data.europa.eu/private/skill/b6116b3d-3646-4e2c-b2e4-cd2b71e04bdd,
+BERT,Bidirectional Encoder Representations from Transformers,http://data.europa.eu/private/skill/e3cf5bf4-27bd-4822-af72-6bd0f95c87ed,
+GPT,Generative Pre-trained Transformer,http://data.europa.eu/private/skill/38f47bd8-4a82-450f-b19e-d4119c28876f,
+Llama,"Meta Llama
+Llama 2
+Llama 3",http://data.europa.eu/private/skill/9d70903f-c0ec-41f4-a153-8751993e69c6,
+Mistral,Mistral AI,http://data.europa.eu/private/skill/73b61401-53a3-49be-a3c7-ae7a6cbf6373,
+Falcon,Falcon LLM,http://data.europa.eu/private/skill/3a3fe994-40f7-43c2-aed4-7e26bba294f1,
+Claude,Anthropic Claude,http://data.europa.eu/private/skill/b9c028a5-2ff9-4f03-97ce-84d1681cab5e,
+Anthropic,,http://data.europa.eu/private/skill/b176eb38-339a-41ac-81e3-ac4f8b038cfb,
+Gemini,"Google Gemini
+Bard",http://data.europa.eu/private/skill/36bd4584-b627-4269-99b1-d43bd364243a,
+Datarobot,,http://data.europa.eu/private/skill/82a4de7c-a333-4b98-bc0e-9cffb1483867,
+H2O.ai,H2O,http://data.europa.eu/private/skill/3456fee5-26d7-4bcb-ba34-5f8827091f59,
+RapidMiner,,http://data.europa.eu/private/skill/5626ca83-d841-4acb-9826-c7e5bafb710a,
+KNIME,,http://data.europa.eu/private/skill/fd0b3044-2fa3-4453-be2d-b8d3f42a66b5,
+Orange,Orange Data Mining,http://data.europa.eu/private/skill/9afc2c2b-ae36-42c6-81c4-87139822200e,
+Theano,,http://data.europa.eu/private/skill/fbb4ce89-cc16-4841-b067-63dd84f70561,
+Caffe,Caffe2,http://data.europa.eu/private/skill/37c29916-8eae-4f1f-aefe-3d0150e82cfd,
+MXNet,Apache MXNet,http://data.europa.eu/private/skill/6337806b-df48-4080-9964-dc5f0aa86e52,
+YOLO,You Only Look Once,http://data.europa.eu/private/skill/eccbeb1a-82c0-416f-b721-dd55159daa8f,
+Object Detection,,http://data.europa.eu/private/skill/3ff3eca5-c820-4bf1-954a-4ec39ebbe41e,
+Image Segmentation,,http://data.europa.eu/private/skill/e57d0684-abde-4ea1-94d3-d8585d3948a1,
+OCR,Optical Character Recognition,http://data.europa.eu/private/skill/b635aa74-68ca-4cf9-a663-bb60aac4b8c1,
+Tesseract,Tesseract OCR,http://data.europa.eu/private/skill/8c4e3857-dd25-4634-a834-2d4e6ef05fca,
+PaddlePaddle,,http://data.europa.eu/private/skill/ebac46f8-5f25-4337-aa9c-4eb30d4f06dc,
+Haystack,Haystack NLP,http://data.europa.eu/private/skill/11403d29-f4d7-4496-b0a5-2046d0c731db,
+Semantic Kernel,Microsoft Semantic Kernel,http://data.europa.eu/private/skill/3febd5a8-d3a9-4e99-91d1-5a535d3855b6,
+Cohere,,http://data.europa.eu/private/skill/fddf565c-f1a9-4464-a808-c5b1a7073dd6,
+MosaicML,,http://data.europa.eu/private/skill/a9e91b37-833a-4230-bd78-91294d863d4c,
+AWS,"Amazon Web Services
+AWS Cloud",http://data.europa.eu/private/skill/68dfa95e-3bc0-4a0a-9db1-3796aa377fe0,
+Azure,Microsoft Azure,http://data.europa.eu/private/skill/d1e56a0b-e733-429a-b597-e0eb408056db,
+GCP,"Google Cloud Platform
+Google Cloud",http://data.europa.eu/private/skill/8cbebbfb-e8f2-45e3-9fe1-f53177cd1e1a,
+Docker,"Docker Containers
+Containerization",http://data.europa.eu/private/skill/c4e3ce61-6f2e-4d82-b519-b6ce499bfcdc,
+Kubernetes,"K8s
+Kube",http://data.europa.eu/private/skill/d58df09b-4805-442d-8bc2-fbf97aea05bf,
+OpenShift,"Red Hat OpenShift
+OKD",http://data.europa.eu/private/skill/55bed1a7-6ba9-4510-90fe-d966f0f31ebf,
+Terraform,"HashiCorp Terraform
+IaC
+Infrastructure as Code",http://data.europa.eu/private/skill/9b612fcb-daf8-4571-8dba-26b6f6bc3606,
+Ansible,Ansible Playbooks,http://data.europa.eu/private/skill/d5e298aa-37e0-4527-b19e-f6ce65309542,
+Puppet,,http://data.europa.eu/private/skill/8361129d-7bd6-4a4d-a8fa-b339d20e7146,
+Chef,Chef Infra,http://data.europa.eu/private/skill/e2fac76f-e28e-4489-b634-1c73924ef11e,
+Jenkins,Jenkins CI,http://data.europa.eu/private/skill/20c47f51-1483-47d3-9ef7-2c98f4c1fefd,
+GitLab CI,"GitLab CI/CD
+GitLab Pipelines",http://data.europa.eu/private/skill/5646fb7d-d2f6-4bfa-b3a4-a2fc4ba1859f,
+GitHub Actions,GHA,http://data.europa.eu/private/skill/391bd1b7-c71d-466e-9921-9cfea4945c52,
+CircleCI,,http://data.europa.eu/private/skill/0fc9d482-fd7e-4ea5-80a2-c78db9a500f3,
+Travis CI,Travis,http://data.europa.eu/private/skill/7909656a-e476-424a-a4a2-20f37089a520,
+TeamCity,,http://data.europa.eu/private/skill/65075bed-3985-470f-b22b-425cc1056aca,
+ArgoCD,"Argo CD
+GitOps",http://data.europa.eu/private/skill/1ecdca4f-36ec-444c-b2fb-1f968210953a,
+Helm,Helm Charts,http://data.europa.eu/private/skill/eaa15f8a-b9cc-45c8-861c-ac6aba94567c,
+Prometheus,PromQL,http://data.europa.eu/private/skill/4acabdfa-37bd-4bab-bd47-d1870bc82ad4,
+Grafana,Grafana Dashboards,http://data.europa.eu/private/skill/24b75cfc-e271-4bf2-83e3-383e39582aa7,
+ELK Stack,Elasticsearch Logstash Kibana,http://data.europa.eu/private/skill/00c5a748-6ab0-4ecd-b08b-ae845a6ed78f,
+Splunk,,http://data.europa.eu/private/skill/c7a28374-8f79-4758-9e1b-5ff143552e60,
+Datadog,,http://data.europa.eu/private/skill/bc6a565a-678f-44ad-aa03-09ba7a738ce5,
+New Relic,,http://data.europa.eu/private/skill/defe7534-78c3-401a-a1e6-d2ccd40013bf,
+Linux,"RHEL
+CentOS
+Ubuntu
+Debian
+Fedora
+Alpine Linux",http://data.europa.eu/private/skill/89c696e1-4670-4838-87b4-77623f660534,
+Unix,,http://data.europa.eu/private/skill/59d67207-4a9f-4b41-9584-863d46e2f561,
+Ubuntu,,http://data.europa.eu/private/skill/1fa97759-0e7c-4647-af58-90b93ceb959e,
+CentOS,,http://data.europa.eu/private/skill/a101a1d5-26f1-48ca-bde3-625fca459cc4,
+RedHat,"RHEL
+Red Hat Enterprise Linux",http://data.europa.eu/private/skill/2c37a753-8b0f-4a8f-9955-59317f4906f4,
+Debian,,http://data.europa.eu/private/skill/d6d52a0d-1517-4058-947c-bc23b628595e,
+Virtualization,"VMs
+Virtual Machines",http://data.europa.eu/private/skill/75d9f28d-c576-4571-a936-e6d85708d216,
+VMware,"vSphere
+ESXi",http://data.europa.eu/private/skill/7cac0892-2af1-46a9-bcd4-6c2e68d49ace,
+Hyper-V,Microsoft Hyper-V,http://data.europa.eu/private/skill/af6f197a-915f-4f5f-9214-9711e9eedefa,
+Proxmox,Proxmox VE,http://data.europa.eu/private/skill/6df5f543-6428-4795-9068-a03d10470917,
+Vagrant,,http://data.europa.eu/private/skill/76d26850-8691-42c9-a119-063f473efa29,
+Traefik,,http://data.europa.eu/private/skill/5bff87f3-8481-42fd-ae97-76e7a186aef4,
+Istio,Service Mesh,http://data.europa.eu/private/skill/b141d63f-745a-4c5e-a8dc-d2c475814d43,
+CloudFormation,"AWS CloudFormation
+CFN",http://data.europa.eu/private/skill/d095c056-37da-4486-a273-c3439e849525,
+Pulumi,,http://data.europa.eu/private/skill/ca9449ec-71d6-4268-8130-19f885ab9501,
+CDK,"AWS CDK
+Cloud Development Kit",http://data.europa.eu/private/skill/252f187a-9621-48b3-95b5-60a300291fa8,
+Azure DevOps,"ADO
+TFS
+Team Foundation Server",http://data.europa.eu/private/skill/1953edce-d820-4eca-93e6-1c00a5d02ded,
+Bitbucket Pipelines,,http://data.europa.eu/private/skill/58209c56-e4ec-46ab-8711-f73cc4e7bb51,
+Bamboo,Atlassian Bamboo,http://data.europa.eu/private/skill/871d30e6-d756-413f-b9f6-186cfa077b54,
+Octopus Deploy,Octopus,http://data.europa.eu/private/skill/0f94cfe2-eb0b-4a0d-b8f8-213407fc720d,
+HashiCorp Vault,Vault,http://data.europa.eu/private/skill/6e22c0e7-d09e-4748-a602-e58418037c6b,
+Consul,HashiCorp Consul,http://data.europa.eu/private/skill/4222af06-008a-4dac-9dcb-62c300a41024,
+Nomad,HashiCorp Nomad,http://data.europa.eu/private/skill/c615c701-edc0-48bf-b665-31451a28d73f,
+Packer,HashiCorp Packer,http://data.europa.eu/private/skill/89e9a0a5-bc91-4fcd-845f-5fe75f0bcecc,
+OpenStack,,http://data.europa.eu/private/skill/b3568e32-0dbd-4e94-a8d2-86c234679899,
+Heroku,,http://data.europa.eu/private/skill/c4d30a04-e9f9-488a-9032-399b5d26692d,
+DigitalOcean,,http://data.europa.eu/private/skill/3a7293d6-3c1c-4ab1-9a65-56e9c7d770b1,
+Linode,Akamai Linode,http://data.europa.eu/private/skill/5621c344-6ff5-48cd-9b50-6772ed7e7f40,
+Vercel,,http://data.europa.eu/private/skill/32a6a80d-e617-4032-8f67-56ad2df113ff,
+Netlify,,http://data.europa.eu/private/skill/6b326a56-fa3d-4a43-a8d5-cd4e3a6c4d20,
+Cloudflare,"Cloudflare Workers
+Cloudflare Pages",http://data.europa.eu/private/skill/c4324b76-a930-4cc4-8c11-ba42c354b3d6,
+CDN,Content Delivery Network,http://data.europa.eu/private/skill/bf0762ca-1a16-47c9-9d73-844fa17c214c,
+Serverless Framework,SlS,http://data.europa.eu/private/skill/4b86ee03-f695-4c74-bbbe-1fd379b2150b,
+Bicep,Azure Bicep,http://data.europa.eu/private/skill/941659d0-c0dc-47e0-a39d-82b21b7c5698,
+LXC,Linux Containers,http://data.europa.eu/private/skill/7ccc00e0-d49a-4439-9087-16ce6507d364,
+LXD,,http://data.europa.eu/private/skill/5fe5ab64-67c6-4497-ba08-82b0660ff143,
+Mesos,Apache Mesos,http://data.europa.eu/private/skill/b0c111a7-d9b3-436c-8358-4c9df7f89a41,
+Rancher,,http://data.europa.eu/private/skill/f9f26890-15a0-4a0c-823e-29eb7c99acf7,
+Podman,,http://data.europa.eu/private/skill/d46d73f7-1da5-41ef-8d85-ff3586703989,
+Nagios,,http://data.europa.eu/private/skill/336931ad-d41f-40d4-9736-8c629844fa27,
+Zabbix,,http://data.europa.eu/private/skill/c55383f2-19d2-4ded-a951-b24e8d2bef1a,
+Sentry,,http://data.europa.eu/private/skill/182508e6-4d7c-4401-9b70-33d68afb7008,
+PagerDuty,,http://data.europa.eu/private/skill/f2bf4f63-e6e8-4c9e-81a7-49fd5c8b750f,
+Opsgenie,,http://data.europa.eu/private/skill/0c97b02e-9352-4e42-9d69-1af4ca5beba7,
+OOP,"Object-Oriented Programming
+OO Design",http://data.europa.eu/private/skill/3edb1442-54a8-40a3-ad17-0bd10a7e55ba,
+Functional Programming,FP,http://data.europa.eu/private/skill/cdceefba-4f20-464c-ac9d-0cb68f0dbd97,
+TDD,Test Driven Development,http://data.europa.eu/private/skill/9a54691b-8093-4998-af14-1c904616ccdd,
+BDD,Behavior Driven Development,http://data.europa.eu/private/skill/10a09b45-05e7-4c43-a649-7b36996bbb3a,
+DDD,Domain Driven Design,http://data.europa.eu/private/skill/fc215251-3e75-4150-b956-88aa21adf860,
+Clean Architecture,Onion Architecture,http://data.europa.eu/private/skill/7cad0813-319c-4cc2-90b0-52be24d19b0f,
+Hexagonal Architecture,Ports and Adapters,http://data.europa.eu/private/skill/3082549b-3ab9-4be3-9250-357e6b462447,
+MVC,Model View Controller,http://data.europa.eu/private/skill/ff831c20-03bc-4399-89a0-e77326293687,
+MVVM,Model View ViewModel,http://data.europa.eu/private/skill/ed15b73a-f313-494c-93db-1cacee349d79,
+Design Patterns,"GoF Patterns
+Singleton
+Factory
+Observer",http://data.europa.eu/private/skill/54c91105-e0f2-48da-b587-97bad30cecb3,
+SOLID,SOLID Principles,http://data.europa.eu/private/skill/99c84c1b-065f-4ff8-a54e-ef00226abfb5,
+DRY,Don't Repeat Yourself,http://data.europa.eu/private/skill/69445674-6efb-447a-adaa-93e24e210476,
+CI/CD,"Continuous Integration
+Continuous Deployment
+Continuous Delivery",http://data.europa.eu/private/skill/394aadf7-f145-4375-9946-b046ea9408dd,
+Agile,Agile Methodology,http://data.europa.eu/private/skill/cc5fb162-66f2-4501-91cb-a079aff891ad,
+Scrum,Scrum Framework,http://data.europa.eu/private/skill/8760eb2e-c2e7-49bd-93e7-2a778f5cc9bb,
+Kanban,,http://data.europa.eu/private/skill/a7d688b1-0e40-4b7e-bde9-8650d651de89,
+Lean,Lean Software Development,http://data.europa.eu/private/skill/5c4a8e57-c191-46a3-b360-42bb1558d045,
+Waterfall,Waterfall Model,http://data.europa.eu/private/skill/611c55ab-2e6a-4097-8c38-d3bb82da9840,
+DevSecOps,,http://data.europa.eu/private/skill/c97ad58f-596d-4e7a-98df-407b4cd3efa9,
+Git,Git Version Control,http://data.europa.eu/private/skill/ff38392d-d9d1-415b-8578-df3acbdadb97,
+GitHub,,http://data.europa.eu/private/skill/390b5dbb-7f5e-4860-8c8a-6430a34f4dec,
+GitLab,,http://data.europa.eu/private/skill/e7830abb-b0e4-49ac-bafd-46895b1e68cf,
+Bitbucket,,http://data.europa.eu/private/skill/2f531dbd-02cb-4137-a1b2-e3469812c5d6,
+SVN,Subversion,http://data.europa.eu/private/skill/7c40204d-9219-49ca-8d9d-7d12dcba1b7d,
+Jira,Atlassian Jira,http://data.europa.eu/private/skill/77634c7e-6d8d-4cc6-b26c-2342ac10841d,
+Confluence,Atlassian Confluence,http://data.europa.eu/private/skill/93bf218d-6e47-4cc4-8237-509cad984163,
+UML,Unified Modeling Language,http://data.europa.eu/private/skill/f3360030-16da-408d-b94e-80ac285c6477,
+BPMN,Business Process Model and Notation,http://data.europa.eu/private/skill/d2480de5-aaec-4a23-8d40-1a5a183871eb,
+Microfrontends,Micro Frontends,http://data.europa.eu/private/skill/99eba6ce-1698-47fb-bad1-b23533c8ed93,
+Monolith,Monolithic Architecture,http://data.europa.eu/private/skill/1065dd79-e06c-456a-9d46-b92b2d07167f,
+SOA,Service Oriented Architecture,http://data.europa.eu/private/skill/594471e8-4c7f-4aad-868a-9b35ee584301,
+Event-Driven Architecture,EDA,http://data.europa.eu/private/skill/7fffbc36-ea64-456f-b6f2-0fd1a4f573bf,
+CQRS,Command Query Responsibility Segregation,http://data.europa.eu/private/skill/3d72617a-6c62-4899-ba0d-c8173d7b701f,
+Event Sourcing,,http://data.europa.eu/private/skill/a2d717b8-11af-4f95-ad98-7e4ff598df53,
+TOGAF,The Open Group Architecture Framework,http://data.europa.eu/private/skill/0144b281-d7ff-4e65-a47f-a1fdedc5995f,
+ITIL,Information Technology Infrastructure Library,http://data.europa.eu/private/skill/32187415-07c6-4108-bf18-cd7afbfc0004,
+COBIT,,http://data.europa.eu/private/skill/89a4ac3e-b6b9-49b3-8b22-e1ba643e9fcc,
+SAFe,Scaled Agile Framework,http://data.europa.eu/private/skill/cd571e22-74bf-4602-b6cc-6b317232d563,
+LeSS,Large Scale Scrum,http://data.europa.eu/private/skill/947c9ace-d2ab-4d85-b57e-fd51ef570f1b,
+XP,Extreme Programming,http://data.europa.eu/private/skill/03492bab-3a92-45ce-8b22-398b8c92ad63,
+Pair Programming,,http://data.europa.eu/private/skill/876e0624-66d3-4aad-913e-6a70d62eb878,
+Code Review,Pull Request Review,http://data.europa.eu/private/skill/3d1c66bb-2eed-4c3a-9fd1-30a91d1d4f24,
+Refactoring,,http://data.europa.eu/private/skill/76c85bcd-5008-4b4b-8a8c-aa7c31239422,
+Unit Testing,Unit Tests,http://data.europa.eu/private/skill/00d9260b-6a5e-4e60-b19c-970037b516ab,
+Integration Testing,Integration Tests,http://data.europa.eu/private/skill/24cf548b-5404-4754-a4d4-49b625a7405f,
+E2E Testing,End-to-End Testing,http://data.europa.eu/private/skill/ab7235fa-35af-483e-b2ca-6b003f3da18a,
+Selenium,Selenium WebDriver,http://data.europa.eu/private/skill/7ffb9987-9e3a-400b-b305-40b0b9a47c04,
+Cypress,Cypress.io,http://data.europa.eu/private/skill/9f0fc2db-48c0-4a43-8e00-6784a469ae1e,
+Playwright,Microsoft Playwright,http://data.europa.eu/private/skill/003388db-1d97-495d-921d-787740ecc107,
+Puppeteer,,http://data.europa.eu/private/skill/6fe88daf-3bcd-45d9-b9f4-6df9f3421ae3,
+Jest,,http://data.europa.eu/private/skill/d0608664-1af9-42bf-8764-3ceb9f7bfa29,
+Mocha,,http://data.europa.eu/private/skill/7d1d5d0c-386f-4dfb-bbdb-598ee25b16f0,
+Chai,,http://data.europa.eu/private/skill/7efb2837-938a-4652-ac42-2cc74bfae076,
+PyTest,pytest,http://data.europa.eu/private/skill/b67399dc-1330-49f0-9afd-d79c5c42895b,
+Unittest,Python Unittest,http://data.europa.eu/private/skill/3b7e7aea-8248-4de0-b200-37505e3e1ad0,
+JUnit,,http://data.europa.eu/private/skill/3ce68eed-2f07-4ceb-acd2-c0238ed8d2a1,
+TestNG,,http://data.europa.eu/private/skill/d4eddaa3-56f3-45cb-82b7-516bea8a7b50,
+Cucumber,Gherkin,http://data.europa.eu/private/skill/89d8b39e-ff72-4051-8cd3-426d4f4333f4,
+K6,Grafana k6,http://data.europa.eu/private/skill/1be45c5f-1295-4532-b198-5094d2962958,
+JMeter,Apache JMeter,http://data.europa.eu/private/skill/d7d9aac4-7f0f-4b47-ba1b-e9033d0a5939,
+Load Testing,"Performance Testing
+Stress Testing",http://data.europa.eu/private/skill/f1ac9bf9-7729-4d55-8c78-9d80171033b5,
+Appium,,http://data.europa.eu/private/skill/aef58222-da28-47dd-9768-8db8a8e354d6,
+Espresso,Android Espresso,http://data.europa.eu/private/skill/758050b9-cc20-4033-9827-a8f64f9c61d0,
+XCUITest,,http://data.europa.eu/private/skill/b39b994d-35aa-469f-afc5-07c1fa825c78,
+Robot Framework,,http://data.europa.eu/private/skill/b033de91-67e3-4fc7-905a-ae2b7441d1b3,
+SpecFlow,,http://data.europa.eu/private/skill/7b80455f-90d7-445a-8431-f6d5ac8f2a87,
+SonarQube,Sonar,http://data.europa.eu/private/skill/e74574d3-156e-4d61-bd92-418f81681470,
+Katalon,Katalon Studio,http://data.europa.eu/private/skill/ca82570f-8d3f-4456-8d93-37235a2c8677,
+Tricentis Tosca,Tosca,http://data.europa.eu/private/skill/eecdc922-6fda-4578-b7d0-ed71883ca954,
+Gatling,,http://data.europa.eu/private/skill/6f92c0f7-298c-4e5f-895b-c8765918177e,
+Locust,,http://data.europa.eu/private/skill/17689c51-c8aa-40a7-8a3a-9912bfc49cd0,
+Artillery,,http://data.europa.eu/private/skill/3ae778ec-73f6-4b0b-91d0-b81a6a4b0314,
+Sauce Labs,,http://data.europa.eu/private/skill/8507deeb-8e97-4974-bbd9-856e62d0c625,
+BrowserStack,,http://data.europa.eu/private/skill/acc610fa-72af-40b1-8f83-0bc99b447d5d,
+TestRail,,http://data.europa.eu/private/skill/cc5aa307-f2bd-4e72-818d-713a8c048364,
+Zephyr,,http://data.europa.eu/private/skill/65cd34bc-e32f-4f99-92cf-e1807e079e77,
+Xray,,http://data.europa.eu/private/skill/d6c51f41-f46b-4ee8-a634-68d9d76617d3,
+Cybersecurity,"IT Security
+InfoSec",http://data.europa.eu/private/skill/4b8ec86b-bd8e-416c-a083-87fb0301604c,
+Penetration Testing,"Pen Testing
+Pentest",http://data.europa.eu/private/skill/e45c67ab-d79a-4bad-888d-c4a7b023990a,
+Ethical Hacking,White Hat Hacking,http://data.europa.eu/private/skill/3d4c3b88-acc3-445b-8cc0-8ecdeed7918a,
+OWASP,OWASP Top 10,http://data.europa.eu/private/skill/983dc866-49db-4b37-80ef-afe7c1c67a20,
+IAM,Identity and Access Management,http://data.europa.eu/private/skill/74042099-8464-475e-9d11-3fa9d84f317d,
+OAuth,OAuth 2.0,http://data.europa.eu/private/skill/5cec3225-dd54-44d8-b1e5-defbbb2294ef,
+OIDC,OpenID Connect,http://data.europa.eu/private/skill/9e6a5c21-46ea-4872-812d-1f944fe4ed6c,
+JWT,JSON Web Token,http://data.europa.eu/private/skill/f790d905-9777-411c-8fc0-698688ceb242,
+SSO,Single Sign-On,http://data.europa.eu/private/skill/1bac3758-5611-4b22-b0d9-3cea163a6b11,
+SAML,Security Assertion Markup Language,http://data.europa.eu/private/skill/b854b07f-4ca2-4d2c-830d-c1972b86a846,
+Cryptography,Encryption,http://data.europa.eu/private/skill/3b8ac2bd-0913-4a27-a7aa-35a68f6e6af7,
+SSL,Secure Sockets Layer,http://data.europa.eu/private/skill/98158661-a9ef-40bf-8bb1-09039d7003dc,
+TLS,Transport Layer Security,http://data.europa.eu/private/skill/df0f9da3-a5ad-477f-8b6a-9ce6f2c850f7,
+Firewall,WAF,http://data.europa.eu/private/skill/b45eacb6-bb4b-489d-aea2-02a41354b01c,
+VPN,Virtual Private Network,http://data.europa.eu/private/skill/1e53e90a-f7df-4f5a-9737-269ce9b5f97b,
+SIEM,Security Information and Event Management,http://data.europa.eu/private/skill/2b2d7e58-2001-4d74-93b9-33942d4ff555,
+SOC,Security Operations Center,http://data.europa.eu/private/skill/c892eea6-a9cc-4b18-b67c-eb24b847dd40,
+GDPR,General Data Protection Regulation,http://data.europa.eu/private/skill/3ae28aa4-71d5-47d2-ba1d-faa1cc6b3a29,
+HIPAA,,http://data.europa.eu/private/skill/741140a1-52c5-481d-a861-d81881f9f56c,
+PCI DSS,PCI Compliance,http://data.europa.eu/private/skill/3bcaa918-2deb-4034-b8c4-fa3b3f0fdb3b,
+Burp Suite,Burp,http://data.europa.eu/private/skill/616182f1-5ef6-4861-915a-795fa8dc6b68,
+Metasploit,,http://data.europa.eu/private/skill/87ba59d5-ff69-4b89-a1d1-3403349f57ca,
+Nmap,,http://data.europa.eu/private/skill/e320a037-5bdb-43e2-88ff-eecae767824b,
+Wireshark,,http://data.europa.eu/private/skill/8f9d47aa-194a-4fc3-9192-53e1d7296dc7,
+Nessus,,http://data.europa.eu/private/skill/33b9619f-bab0-4bc8-995c-bb1afee1ea8e,
+Kali Linux,Kali,http://data.europa.eu/private/skill/01b59d58-df0e-4b8e-9e5f-950a5cbde204,
+CISSP,,http://data.europa.eu/private/skill/0a618719-003a-4c30-8911-7127e8cf0f02,
+CISM,,http://data.europa.eu/private/skill/e3f6aaea-107f-4602-8a4f-305628973cb1,
+CEH,Certified Ethical Hacker,http://data.europa.eu/private/skill/fd9ba8b5-6164-4cca-9fdb-284fb6b849a3,
+Zero Trust,Zero Trust Architecture,http://data.europa.eu/private/skill/27de070a-c1bc-472b-a241-40871233edec,
+IDP,Identity Provider,http://data.europa.eu/private/skill/9c92bb47-5e55-4a46-b253-ec4c8ec584e1,
+Okta,,http://data.europa.eu/private/skill/53a6ab64-1ce2-40d3-889f-cf25f0531d82,
+Auth0,,http://data.europa.eu/private/skill/074ccf41-069f-49ec-9729-e435ee81886a,
+Keycloak,,http://data.europa.eu/private/skill/8bc07b17-5715-48d0-b050-1853e25aeaa2,
+Active Directory,"AD
+Azure AD
+Entra ID",http://data.europa.eu/private/skill/b6d23d3c-dba8-4b71-9101-2294b2b55a4e,
+LDAP,Lightweight Directory Access Protocol,http://data.europa.eu/private/skill/c3069106-108a-4b3c-8b9e-3cccebbad17b,
+Kerberos,,http://data.europa.eu/private/skill/fdf60b29-ee6c-4294-bab3-dfb4f81e7332,
+WAF,Web Application Firewall,http://data.europa.eu/private/skill/9d65de69-d840-420e-9b7e-51f4d5228ffb,
+DDoS Protection,Anti-DDoS,http://data.europa.eu/private/skill/196276ba-15fc-43a4-b4ae-42e6cbbb9e63,
+CrowdStrike,,http://data.europa.eu/private/skill/1c3e9830-6653-4452-bde6-484aeae3f1dd,
+SentinelOne,,http://data.europa.eu/private/skill/7ec3e42d-d05c-4464-af46-d1abda4df23d,
+Splunk ES,Splunk Enterprise Security,http://data.europa.eu/private/skill/45b355ae-2d77-4022-be10-eb0d9493cff6,
+Android,"Android Development
+Android SDK",http://data.europa.eu/private/skill/6a2cbae4-a1f5-44aa-b332-8e862da4faef,
+iOS,"iOS Development
+iOS SDK",http://data.europa.eu/private/skill/b61ade75-eb01-4ed8-bf0a-6eab3d837448,
+React Native,RN,http://data.europa.eu/private/skill/5d9da367-c841-473d-b98f-dbbbe4100279,
+Flutter,Dart Flutter,http://data.europa.eu/private/skill/abe775d3-de88-402d-863f-8cdda50d175b,
+Ionic,Ionic Framework,http://data.europa.eu/private/skill/91ae9a28-d7c4-40da-91e4-91fa40d230f2,
+Xamarin,Xamarin.Forms,http://data.europa.eu/private/skill/f03b08b3-a08d-4558-bf45-665d55967dce,
+Cordova,"Apache Cordova
+PhoneGap",http://data.europa.eu/private/skill/d20703b9-1411-481b-9c3b-25ad0e15a16b,
+SwiftUI,,http://data.europa.eu/private/skill/81a673f0-1034-4d38-a8d0-d9421344ff3d,
+UIKit,,http://data.europa.eu/private/skill/3b459990-d73f-43ba-a175-34b818b498f7,
+Jetpack Compose,Compose,http://data.europa.eu/private/skill/aa5599d3-84d1-4395-a92f-49a690d410b8,
+Xcode,,http://data.europa.eu/private/skill/6b0a2f2f-f179-411d-8b87-ad9a7713d0e0,
+Android Studio,,http://data.europa.eu/private/skill/e78fa18f-446f-436a-94df-365f2f8b6739,
+MAUI,".NET MAUI
+Multi-platform App UI",http://data.europa.eu/private/skill/f3a95120-cf75-4273-b07d-a7964d4ab78b,
+NativeScript,,http://data.europa.eu/private/skill/de66c8b1-080d-491e-a609-f6da4bfff82e,
+Expo,,http://data.europa.eu/private/skill/7f7db5a3-63e5-4476-885b-f01609cc549d,
+Cocoa Touch,,http://data.europa.eu/private/skill/6203ef77-48ca-482c-8440-e8d93b6cddce,
+Room,Room Database,http://data.europa.eu/private/skill/ecc89c1b-a423-4193-be47-b1a2052ef4e6,
+Retrofit,,http://data.europa.eu/private/skill/5fb7b2d9-437e-4113-98b1-a9611df876c7,
+Business Analysis,"BA
+Business Analyst",http://data.europa.eu/private/skill/dc081d6b-f36c-4113-bb5d-85ab6054c4ae,
+Requirements Analysis,Requirements Engineering,http://data.europa.eu/private/skill/58ff81dc-f0ce-4e67-a6da-b65adf2f2f97,
+Stakeholder Management,,http://data.europa.eu/private/skill/0b04620d-4f12-4528-baec-25c18cc8d0f6,
+Product Management,"PM
+Product Manager",http://data.europa.eu/private/skill/64fb3bc8-34e6-4036-8e0d-7698aa66cc54,
+Project Management,"PM
+Project Manager",http://data.europa.eu/private/skill/f289dbb7-c554-40fc-980e-82a7d9aad090,
+Product Owner,PO,http://data.europa.eu/private/skill/a4738c44-4e2c-4d9f-b199-6af5cd5f0765,
+Scrum Master,,http://data.europa.eu/private/skill/e9ee197a-da14-444d-86ca-cce8efa8091b,
+PMP,Project Management Professional,http://data.europa.eu/private/skill/97b33c42-9ef0-4253-84d9-633c4eed75bc,
+PRINCE2,,http://data.europa.eu/private/skill/e2bc41e6-16b1-4ebb-b9b2-9fbd7bf4b5fa,
+Six Sigma,Lean Six Sigma,http://data.europa.eu/private/skill/e6158ba4-a6c1-4df3-922e-02a3a8774412,
+Business Intelligence,BI,http://data.europa.eu/private/skill/4760d14a-c58c-4b70-aa3d-c91ead7a29be,
+KPI,Key Performance Indicators,http://data.europa.eu/private/skill/fc058095-4e51-4880-a8e8-f0293768d2b1,
+OKR,Objectives and Key Results,http://data.europa.eu/private/skill/04ad42a4-551c-4f95-8a79-ee0d197ac1ee,
+ROI,Return on Investment,http://data.europa.eu/private/skill/a30196fb-b14d-4292-b3a4-1acf6e82323c,
+SWOT Analysis,SWOT,http://data.europa.eu/private/skill/e9e4fb5b-700d-466a-8d49-b1f96de28155,
+Gap Analysis,,http://data.europa.eu/private/skill/c9002c48-34b7-47ba-8b4c-a68c791aaea1,
+Digital Transformation,,http://data.europa.eu/private/skill/ff49a618-657f-45bc-bb43-0e74a8912a04,
+Change Management,,http://data.europa.eu/private/skill/c99c123d-0118-4a79-8c88-444d6de1ea2f,
+Process Optimization,Bessiness Process Improvement,http://data.europa.eu/private/skill/6efa38fa-183f-4f18-9854-17901c0e1409,
+BPM,Business Process Management,http://data.europa.eu/private/skill/789fec0a-7d0b-4e12-a1a4-07c1e2220eac,
+ERP,Enterprise Resource Planning,http://data.europa.eu/private/skill/b88bc775-a859-4040-83f4-64a29d1cd469,
+CRM,Customer Relationship Management,http://data.europa.eu/private/skill/1121a5b4-49ab-4881-a290-8d75fd208d4e,
+SAP,Systems Applications and Products,http://data.europa.eu/private/skill/50ddd164-1f0d-47ee-bf5a-ec77c52c3476,
+Salesforce,SFDC,http://data.europa.eu/private/skill/398fd0ed-b258-4ff8-8705-59ce6570e479,
+Oracle EBS,E-Business Suite,http://data.europa.eu/private/skill/8adc0f56-fcde-479e-bd6a-a9fcd2e3f593,
+Microsoft Dynamics,Dynamics 365,http://data.europa.eu/private/skill/d6c7f273-4298-4525-b07b-4d15a9f61c70,
+NetSuite,Oracle NetSuite,http://data.europa.eu/private/skill/56156f1f-aef7-4b3c-8ff0-c652137b9d93,
+ServiceNow,Now Platform,http://data.europa.eu/private/skill/e32a4f0c-7b59-46a4-bc19-83c2a706fec9,
+Workday,,http://data.europa.eu/private/skill/6bc6b741-eb15-44a7-aac9-c8910e258f14,
+Jira Align,,http://data.europa.eu/private/skill/fd6ebee1-685b-43ae-9d15-a49d0b001ca3,
+Miro,,http://data.europa.eu/private/skill/9184a72e-aa2b-4bb6-a925-cde432cf00eb,
+Lucidchart,,http://data.europa.eu/private/skill/a23aa267-021b-4270-90ff-46037159f45d,
+Visio,Microsoft Visio,http://data.europa.eu/private/skill/841bc063-e732-4db2-a7ac-f4c9142a02fd,
+Figma,,http://data.europa.eu/private/skill/2884b2bb-ec15-40d9-b273-ac3f1ff200fd,
+IoT,Internet of Things,http://data.europa.eu/private/skill/795def20-b806-4021-9f02-cd5f3b4313c6,
+Arduino,,http://data.europa.eu/private/skill/8edf15b2-b606-431c-9671-775f3bcc1f0a,
+Raspberry Pi,"RPi
+Raspi",http://data.europa.eu/private/skill/f13dd85f-e845-42b2-985c-231502e0989f,
+ESP32,,http://data.europa.eu/private/skill/288e3578-8784-413b-9bb6-0d12017249e7,
+Zigbee,,http://data.europa.eu/private/skill/005fc513-b50a-49e4-ab51-94c748484c73,
+LoRaWAN,LoRa,http://data.europa.eu/private/skill/cafb8716-1e4d-41c7-b936-0fdcc0426620,
+FPGA,Field-Programmable Gate Array,http://data.europa.eu/private/skill/c5989b4a-494a-4828-8edd-642faa3f019e,
+VHDL,,http://data.europa.eu/private/skill/1f364435-96d6-42d2-985a-c4bad92f760e,
+Verilog,,http://data.europa.eu/private/skill/fb2ecdfc-75b8-4e21-8fd1-c0ea2450d1a6,
+PLC,Programmable Logic Controller,http://data.europa.eu/private/skill/a866de9f-750e-4bc2-967b-4c73696cebb6,
+SCADA,Supervisory Control and Data Acquisition,http://data.europa.eu/private/skill/a4cb4006-d701-472a-807c-12a8fba9258e,
+Edge Computing,,http://data.europa.eu/private/skill/8c432061-e979-428e-98d7-f880de385a89,
+CUDA,NVIDIA CUDA,http://data.europa.eu/private/skill/42c1c7e7-6d3a-43f8-a46c-adae70f5dbfb,
+OpenCL,,http://data.europa.eu/private/skill/387688d9-7e6d-45ae-a936-b51d167ad201,
+Communication,"Verbal communication
+Interpersonal skills
+Effective communication",http://data.europa.eu/private/skill/7c6cd4a8-6d6a-4a8f-a608-8c09c0486195,
+Teamwork,"Collaboration
+Team player
+Cooperation",http://data.europa.eu/private/skill/d0b87a97-281c-497d-8545-9cb8987c8905,
+Leadership,"Team Leadership
+Management
+Supervision",http://data.europa.eu/private/skill/0ebbb838-f1b5-4ae0-b544-e3c06389fa60,
+Problem Solving,"Troubleshooting
+Analytical skills",http://data.europa.eu/private/skill/80ac52d2-88ca-4906-9bcf-181e2bed3781,
+Critical Thinking,Analytical Thinking,http://data.europa.eu/private/skill/dedd56da-1c60-4108-818a-acbe29557939,
+Time Management,"Prioritization
+Organization",http://data.europa.eu/private/skill/7fc20557-d816-48c9-84f6-a8bfb7c54c55,
+Adaptability,Flexibility,http://data.europa.eu/private/skill/5ba95f16-0db5-48c1-91ad-97d43f33be60,
+Creativity,Innovation,http://data.europa.eu/private/skill/3f1ed1ed-fa36-459c-8620-89b3070f87c3,
+Mentoring,Coaching,http://data.europa.eu/private/skill/3af2bc20-b56b-4747-8f2e-79c298365e3e,
+Presentation Skills,Public Speaking,http://data.europa.eu/private/skill/359ef8a4-a89b-449a-9f91-37194134ed0d,
+Negotiation,Persuasion,http://data.europa.eu/private/skill/8a3d848a-063d-442c-a577-79828785caae,
+English,"English Language
+English C1
+English C2
+English B2
+English: C1
+English: C2
+English: B2
+Fluent English",http://data.europa.eu/private/skill/8d5aea88-c504-4fd9-9614-a96e41eb744c,
+Polish,"Polish Language
+Native Polish",http://data.europa.eu/private/skill/6a984592-0c3f-468a-819d-0b71845561c2,
+German,"German Language
+Deutsch",http://data.europa.eu/private/skill/cd17f051-c0d8-40bd-9bf9-7e190a0faa18,
+French,"French Language
+Français",http://data.europa.eu/private/skill/f02de856-03e6-4b13-8426-ab1e17f0f3c8,
+Spanish,"Spanish Language
+Español",http://data.europa.eu/private/skill/6d37dcce-f1ae-4408-a794-084890dcabfc,
+Italian,"Italian Language
+Italiano",http://data.europa.eu/private/skill/cad44b4f-27f0-4c93-be91-0998b87a656d,
+Mandarin,"Chinese Language
+Mandarin Chinese",http://data.europa.eu/private/skill/09aeb561-a983-4f38-a336-5439d7f0e924,
+Emotional Intelligence,EQ,http://data.europa.eu/private/skill/e17b013b-33d0-4452-adac-00fa8375a1f4,
+Conflict Resolution,,http://data.europa.eu/private/skill/b16f4b10-2e3c-47ba-a895-e26a415c95e5,
+Decision Making,Strategic Decision Making,http://data.europa.eu/private/skill/31ada778-fca9-42af-8c8d-fe10d7a5e229,
+Storytelling,Business Storytelling,http://data.europa.eu/private/skill/5ddb40cb-a66d-4f5e-9aff-516811e617ad,
