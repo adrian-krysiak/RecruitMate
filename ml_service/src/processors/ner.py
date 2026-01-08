@@ -3,9 +3,9 @@ from pathlib import Path
 import pickle
 from typing import List, Set, Dict, Tuple
 
-import spacy
 from spacy.language import Language
 from spacy.tokens import Doc
+from spacy.symbols import ORTH
 
 from src.config import SECTION_WEIGHTS, NER_SKILLS_DATA_PATH
 
@@ -17,6 +17,8 @@ class NERProcessor:
 
     def __init__(self, nlp: Language):
         self.nlp = nlp
+        self.skill_canonical: Dict[str, str] = {}
+        self.label_to_canonical: Dict[str, str] = {}
         self._setup_entity_ruler()
 
     def _setup_entity_ruler(self):
@@ -48,7 +50,7 @@ class NERProcessor:
             if not doc or not doc.text.strip():
                 continue
 
-            section_weight = SECTION_WEIGHTS.get(section, 0.1)
+            section_weight = SECTION_WEIGHTS.get(section, 0.5)
             skills_in_section = self._extract_skills(doc)
             for skill in skills_in_section:
                 current_max = cv_skill_weights.get(skill, 0.0)
@@ -66,10 +68,6 @@ class NERProcessor:
                 missing_keywords.append(required_skill)
 
         final_score = total_score / len(job_skills)
-        print('common_keywords:', common_keywords)
-        print('missing_keywords:', missing_keywords)
-        print('final_score:', final_score)
-
         return round(final_score, 4), common_keywords, missing_keywords
 
     def _extract_skills(self, doc: Doc) -> List[str]:
@@ -79,8 +77,23 @@ class NERProcessor:
         if not doc.text.strip():
             return []
 
-        skills = {ent.text.lower() for ent in doc.ents if ent.label_ == "SKILL"}
-        return list(skills)
+        skills: Set[str] = set()
+        skill_canonical = self.skill_canonical
+        label_to_canonical = self.label_to_canonical
+
+        for ent in doc.ents:
+            if ent.label_ != "SKILL":
+                continue
+            lower_text = ent.text.lower()
+            skill_id = ent.ent_id_ or lower_text
+            canonical = (
+                skill_canonical.get(skill_id)
+                or label_to_canonical.get(lower_text)
+                or lower_text
+            )
+            skills.add(canonical)
+
+        return sorted(skills)
 
     def _get_mvp_patterns(self) -> List[Dict]:
         """
@@ -90,7 +103,21 @@ class NERProcessor:
 
         if processed_path.exists():
             with processed_path.open('rb') as f:
-                return pickle.load(f)
+                stored = pickle.load(f)
+
+            if isinstance(stored, dict):
+                self.skill_canonical = stored.get('canonical', {})
+                self.label_to_canonical = stored.get('label_to_canonical', {})
+                patterns = stored.get('patterns', [])
+            else:
+                # backward compatibility with old pickle storing only patterns list
+                self.skill_canonical = {}
+                self.label_to_canonical = {}
+                patterns = stored
+
+            # ensure tokenizer special-cases are always added, even when loading from cache
+            self._add_special_cases_for_patterns(patterns)
+            return patterns
 
         raw_eu_path = Path(NER_SKILLS_DATA_PATH['raw_eu'])
         raw_addon_path = Path(NER_SKILLS_DATA_PATH['raw_add'])
@@ -107,7 +134,11 @@ class NERProcessor:
             try:
                 processed_path.parent.mkdir(parents=True, exist_ok=True)
                 with processed_path.open('wb') as f:
-                    pickle.dump(patterns, f)
+                    pickle.dump({
+                        "patterns": patterns,
+                        "canonical": self.skill_canonical,
+                        "label_to_canonical": self.label_to_canonical
+                    }, f)
             except Exception as e:
                 print(f"Warning: Could not save processed patterns: {e}")
 
@@ -134,14 +165,18 @@ class NERProcessor:
                 pref = row.get('preferredLabel', '').strip()
                 if pref:
                     labels.add(pref)
+                    # track canonical preferred label per concept
+                    self.skill_canonical.setdefault(uri, pref.lower())
 
                 alt_text = row.get('altLabels', '')
                 if alt_text:
-                    labels.update(label.strip() for label in alt_text.split('\n') if label.strip())
+                    labels.update(label.strip()
+                                  for label in alt_text.split('\n') if label.strip())
 
                 hid_text = row.get('hiddenLabels', '')
                 if hid_text:
-                    labels.update(label.strip() for label in hid_text.split('\n') if label.strip())
+                    labels.update(label.strip()
+                                  for label in hid_text.split('\n') if label.strip())
 
                 if uri not in skill_labels:
                     skill_labels[uri] = set()
@@ -152,13 +187,15 @@ class NERProcessor:
         for uri, labels in skill_labels.items():
             for label in labels:
                 normalized = ' '.join(label.lower().split())
+                if uri in self.skill_canonical and normalized:
+                    self.label_to_canonical.setdefault(
+                        normalized, self.skill_canonical[uri])
 
                 if not normalized or normalized in seen_patterns:
                     continue
 
                 seen_patterns.add(normalized)
 
-                # ✅ FIX: Use spaCy tokenization instead of .split()
                 doc = self.nlp.make_doc(normalized)
                 token_pattern = [{"LOWER": token.text} for token in doc]
 
@@ -169,3 +206,17 @@ class NERProcessor:
                 })
 
         return patterns
+
+    def _add_special_cases_for_patterns(self, patterns: List[Dict]) -> None:
+        """Ensure tokenizer keeps special-token skills
+        (c++, .net, node.js, etc.) as single tokens."""
+        special_cases = self.nlp.tokenizer.special_cases
+        for pat in patterns:
+            # each token in pattern has LOWER;
+            # reconstruct raw by joining with spaces
+            raw_label = " ".join(tok.get("LOWER", "")
+                                 for tok in pat.get("pattern", []))
+            if any(ch in raw_label for ch in ['+', '.', '#', '/']):
+                if raw_label and raw_label not in special_cases:
+                    self.nlp.tokenizer.add_special_case(
+                        raw_label, [{ORTH: raw_label}])

@@ -10,7 +10,7 @@ from src.data_models import MatchDetail
 
 NOISE_PHRASES = {
     'nice to have', 'good to have', 'optional', 'benefits', 'what we offer'
-    }
+}
 TRANS_TABLE = str.maketrans('', '', '():')
 
 
@@ -132,7 +132,8 @@ class SemanticProcessor:
 
             # Extract raw score and weight for that chunk
             raw_score = float(similarity_matrix[i][best_idx])
-            weight = float(cv_weights[best_idx]) if len(cv_weights) > best_idx else 1.0
+            weight = float(cv_weights[best_idx]) if len(
+                cv_weights) > best_idx else 1.0
 
             # Apply section weight after selecting the best semantic match
             weighted_score = raw_score * weight
