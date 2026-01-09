@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { type ViewMode } from './types/ui';
 import { Navbar } from './components/Navbar';
 import { useAuth } from './hooks/useAuth';
+import { Register } from './features/login/Register';
 
 function App() {
     const [currentView, setCurrentView] = useState<ViewMode>('guestScanner');
-    const { userState, handleLogin, handleLogout } = useAuth();
+    const { userState, handleLogin, handleLogout, handleRegister } = useAuth();
 
     const onLogout = async () => {
         await handleLogout();
@@ -30,6 +31,12 @@ function App() {
                 {currentView === 'cvWritter' && <div>CV Writter Component Placeholder</div>}
                 {currentView === 'userAdvisor' && <div>User Advisor Component Placeholder</div>}
                 {currentView === 'userDashboard' && <div>User Dashboard Component Placeholder</div>}
+                {currentView === 'register' && (
+                    <Register
+                        onRegisterSuccess={handleRegister}
+                        onViewChange={setCurrentView}
+                    />
+                )}
             </main>
         </div>
     );

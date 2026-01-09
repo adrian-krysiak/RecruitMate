@@ -108,6 +108,18 @@ export const Login = ({ onLoginSuccess, onViewChange }: LoginProps) => {
                     </button>
                 </form>
 
+                <div className={styles.authSwitch}>
+                    <span>Don't have an account?</span>
+                    <button
+                        type="button"
+                        className={styles.linkButton}
+                        onClick={() => onViewChange('register')}
+                        disabled={isLoading}
+                    >
+                        Create one
+                    </button>
+                </div>
+
                 <div className={styles.futureAuthHint}>
                     <p>Social sign-in coming soon!</p>
                     <div className={styles.socialPlaceholder}>

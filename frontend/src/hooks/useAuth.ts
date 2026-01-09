@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { type UserState } from '../types/ui';
 import { authService } from '../services/authService';
+import { type RegisterRequest, type RegisterResponse } from '../types/api';
 
 export const useAuth = () => {
     const [userState, setUserState] = useState<UserState>(() => {
@@ -26,9 +27,20 @@ export const useAuth = () => {
         setUserState({ isLoggedIn: false, username: '', email: '' });
     };
 
+    const handleRegister = async (payload: RegisterRequest): Promise<RegisterResponse> => {
+        const response = await authService.register(payload);
+        setUserState({
+            isLoggedIn: true,
+            username: response.user.username,
+            email: response.user.email
+        });
+        return response;
+    };
+
     return {
         userState,
         handleLogin,
-        handleLogout
+        handleLogout,
+        handleRegister
     };
 };

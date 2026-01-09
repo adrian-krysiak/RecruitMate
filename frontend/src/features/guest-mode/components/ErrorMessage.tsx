@@ -51,7 +51,8 @@ export const ErrorMessage = ({ error }: ErrorMessageProps) => {
 
   return (
     <div className={styles.container}>
-      <span className={styles.title}>Application Error:</span>
+      {/* <span className={styles.title}>Application Error:</span> */}
+      {/* Application error prefix removed to show only the message */}
       {error.message}
     </div>
   );

@@ -66,3 +66,12 @@ export interface LoginResponse {
     email: string;
   };
 }
+
+// --- Registration ---
+export interface RegisterRequest {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export type RegisterResponse = LoginResponse;

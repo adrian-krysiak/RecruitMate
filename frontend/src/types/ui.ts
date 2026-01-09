@@ -1,4 +1,4 @@
-export type ViewMode = 'guestScanner' | 'cvWritter' | 'userAdvisor' | 'userDashboard' | 'login';
+export type ViewMode = 'guestScanner' | 'cvWritter' | 'userAdvisor' | 'userDashboard' | 'login' | 'register';
 
 export interface UserState {
     isLoggedIn: boolean;

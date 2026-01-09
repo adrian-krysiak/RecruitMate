@@ -9,7 +9,7 @@
 
 .formWrapper {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     padding: 2rem;
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -35,7 +35,7 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
 .formGroup {
@@ -73,6 +73,7 @@
 }
 
 .submitButton {
+    margin-top: 0.5rem;
     padding: 12px;
     font-size: 16px;
     font-weight: 600;
@@ -94,7 +95,7 @@
 }
 
 .authSwitch {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,32 +127,6 @@
     cursor: not-allowed;
 }
 
-.futureAuthHint {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-}
-
-.futureAuthHint p {
-    margin: 0 0 0.75rem 0;
-    font-size: 14px;
-    color: var(--text-secondary);
-}
-
-.socialPlaceholder {
-    padding: 10px;
-    background-color: var(--bg-primary);
-    border-radius: 4px;
-    border: 1px dashed var(--border-color);
-}
-
-.socialPlaceholder span {
-    font-size: 12px;
-    color: var(--text-secondary);
-}
-
-/* Dark theme adjustments */
 [data-theme='dark'] .formWrapper {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

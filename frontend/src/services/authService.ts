@@ -1,5 +1,5 @@
 import { axiosClient } from "../api/axiosClient";
-import { type LoginRequest, type LoginResponse } from "../types/api";
+import { type LoginRequest, type LoginResponse, type RegisterRequest, type RegisterResponse } from "../types/api";
 
 export const authService = {
   login: async (credentials: LoginRequest): Promise<LoginResponse> => {
@@ -10,6 +10,21 @@ export const authService = {
     const { access_token, user } = response.data;
 
     // Store token and user info
+    localStorage.setItem("token", access_token);
+    localStorage.setItem("user", JSON.stringify(user));
+
+    return response.data;
+  },
+
+  register: async (payload: RegisterRequest): Promise<RegisterResponse> => {
+    const response = await axiosClient.post<RegisterResponse>(
+      "/auth/register",
+      payload
+    );
+
+    const { access_token, user } = response.data;
+
+    // Store token and user info to align with login
     localStorage.setItem("token", access_token);
     localStorage.setItem("user", JSON.stringify(user));
 
