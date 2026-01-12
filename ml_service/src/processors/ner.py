@@ -17,7 +17,7 @@ class NERProcessor:
 
     def __init__(self, nlp: Language):
         self.nlp = nlp
-        self.skill_canonical: Dict[str, str] = {}
+        self.uri_to_canonical: Dict[str, str] = {}
         self.label_to_canonical: Dict[str, str] = {}
         self._setup_entity_ruler()
 
@@ -78,7 +78,7 @@ class NERProcessor:
             return []
 
         skills: Set[str] = set()
-        skill_canonical = self.skill_canonical
+        uri_to_canonical = self.uri_to_canonical
         label_to_canonical = self.label_to_canonical
 
         for ent in doc.ents:
@@ -87,7 +87,7 @@ class NERProcessor:
             lower_text = ent.text.lower()
             skill_id = ent.ent_id_ or lower_text
             canonical = (
-                skill_canonical.get(skill_id)
+                uri_to_canonical.get(skill_id)
                 or label_to_canonical.get(lower_text)
                 or lower_text
             )
@@ -106,12 +106,12 @@ class NERProcessor:
                 stored = pickle.load(f)
 
             if isinstance(stored, dict):
-                self.skill_canonical = stored.get('canonical', {})
+                self.uri_to_canonical = stored.get('canonical', {})
                 self.label_to_canonical = stored.get('label_to_canonical', {})
                 patterns = stored.get('patterns', [])
             else:
                 # backward compatibility with old pickle storing only patterns list
-                self.skill_canonical = {}
+                self.uri_to_canonical = {}
                 self.label_to_canonical = {}
                 patterns = stored
 
@@ -136,7 +136,7 @@ class NERProcessor:
                 with processed_path.open('wb') as f:
                     pickle.dump({
                         "patterns": patterns,
-                        "canonical": self.skill_canonical,
+                        "canonical": self.uri_to_canonical,
                         "label_to_canonical": self.label_to_canonical
                     }, f)
             except Exception as e:
@@ -166,7 +166,7 @@ class NERProcessor:
                 if pref:
                     labels.add(pref)
                     # track canonical preferred label per concept
-                    self.skill_canonical.setdefault(uri, pref.lower())
+                    self.uri_to_canonical.setdefault(uri, pref.lower())
 
                 alt_text = row.get('altLabels', '')
                 if alt_text:
@@ -187,9 +187,9 @@ class NERProcessor:
         for uri, labels in skill_labels.items():
             for label in labels:
                 normalized = ' '.join(label.lower().split())
-                if uri in self.skill_canonical and normalized:
+                if uri in self.uri_to_canonical and normalized:
                     self.label_to_canonical.setdefault(
-                        normalized, self.skill_canonical[uri])
+                        normalized, self.uri_to_canonical[uri])
 
                 if not normalized or normalized in seen_patterns:
                     continue
@@ -210,13 +210,12 @@ class NERProcessor:
     def _add_special_cases_for_patterns(self, patterns: List[Dict]) -> None:
         """Ensure tokenizer keeps special-token skills
         (c++, .net, node.js, etc.) as single tokens."""
-        special_cases = self.nlp.tokenizer.special_cases
         for pat in patterns:
             # each token in pattern has LOWER;
             # reconstruct raw by joining with spaces
             raw_label = " ".join(tok.get("LOWER", "")
                                  for tok in pat.get("pattern", []))
             if any(ch in raw_label for ch in ['+', '.', '#', '/']):
-                if raw_label and raw_label not in special_cases:
+                if raw_label:
                     self.nlp.tokenizer.add_special_case(
                         raw_label, [{ORTH: raw_label}])

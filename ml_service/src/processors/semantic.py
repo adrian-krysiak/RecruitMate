@@ -103,7 +103,8 @@ class SemanticProcessor:
                                   job_chunks: List[str],
                                   cv_chunks_data: List[Dict],
                                   cv_weights: torch.Tensor
-                                  ) -> Tuple[List[MatchDetail], float, Dict[str, List[float]]]:
+                                  ) -> Tuple[List[MatchDetail],
+                                             float, Dict[str, List[float]]]:
         """
         Performs cosine similarity and applies weights using matrix operations.
         """
