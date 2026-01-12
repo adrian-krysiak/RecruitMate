@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { isAxiosError } from 'axios';
 import { type RegisterRequest, type RegisterResponse } from '../../types/api';
 import { type ViewMode } from '../../types/ui';
+import { MATCH_CONFIG } from '../../constants';
+import { validateEmail, validatePassword, validateUsername } from '../../utils/validation';
 import { ErrorMessage } from '../guest-mode/components/ErrorMessage';
 import { LoadingOverlay } from '../../components/LoadingOverlay';
 import styles from './Register.module.css';
@@ -11,7 +13,7 @@ interface RegisterProps {
     onViewChange: (view: ViewMode) => void;
 }
 
-export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => {
+export const Register = memo(({ onRegisterSuccess, onViewChange }: RegisterProps) => {
     const [formData, setFormData] = useState<RegisterRequest & { confirmPassword: string }>(
         {
             username: '',
@@ -20,24 +22,44 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
             confirmPassword: ''
         }
     );
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
             [name]: value
         }));
         if (error) setError(null);
-    };
+    }, [error]);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
 
+        // Client-side validations
+        const usernameValidation = validateUsername(formData.username);
+        if (!usernameValidation.isValid) {
+            setError(new Error(usernameValidation.errors.join('\n')));
+            return;
+        }
+
+        if (!validateEmail(formData.email)) {
+            setError(new Error('Please enter a valid email address.'));
+            return;
+        }
+
         if (formData.password !== formData.confirmPassword) {
             setError(new Error('Passwords do not match.'));
+            return;
+        }
+
+        const passwordValidation = validatePassword(formData.password);
+        if (!passwordValidation.isValid) {
+            setError(new Error(passwordValidation.errors.join('\n')));
             return;
         }
 
@@ -62,7 +84,7 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [formData, onRegisterSuccess, onViewChange]);
 
     return (
         <>
@@ -106,7 +128,7 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
                         <div className={styles.formGroup}>
                             <label htmlFor="password" className={styles.label}>Password</label>
                             <input
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 id="password"
                                 name="password"
                                 value={formData.password}
@@ -115,14 +137,25 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
                                 className={styles.input}
                                 disabled={isLoading}
                                 required
-                                minLength={6}
+                                minLength={MATCH_CONFIG.MIN_PASSWORD_LENGTH}
+                                autoComplete="new-password"
                             />
+                            <label className={styles.checkboxLabel}>
+                                <input
+                                    type="checkbox"
+                                    checked={showPassword}
+                                    onChange={() => setShowPassword(prev => !prev)}
+                                    disabled={isLoading}
+                                    aria-label="Show password"
+                                />
+                                Show password
+                            </label>
                         </div>
 
                         <div className={styles.formGroup}>
                             <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
                             <input
-                                type="password"
+                                type={showConfirmPassword ? 'text' : 'password'}
                                 id="confirmPassword"
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
@@ -131,8 +164,19 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
                                 className={styles.input}
                                 disabled={isLoading}
                                 required
-                                minLength={6}
+                                minLength={MATCH_CONFIG.MIN_PASSWORD_LENGTH}
+                                autoComplete="new-password"
                             />
+                            <label className={styles.checkboxLabel}>
+                                <input
+                                    type="checkbox"
+                                    checked={showConfirmPassword}
+                                    onChange={() => setShowConfirmPassword(prev => !prev)}
+                                    disabled={isLoading}
+                                    aria-label="Show confirm password"
+                                />
+                                Show password
+                            </label>
                         </div>
 
                         {error && <ErrorMessage error={error} />}
@@ -140,13 +184,7 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
                         <button
                             type="submit"
                             className={styles.submitButton}
-                            disabled={
-                                isLoading ||
-                                !formData.username ||
-                                !formData.email ||
-                                !formData.password ||
-                                !formData.confirmPassword
-                            }
+                            disabled={isLoading}
                         >
                             {isLoading ? 'Creating account...' : 'Create account'}
                         </button>
@@ -167,4 +205,4 @@ export const Register = ({ onRegisterSuccess, onViewChange }: RegisterProps) => 
             </div>
         </>
     );
-};
+});

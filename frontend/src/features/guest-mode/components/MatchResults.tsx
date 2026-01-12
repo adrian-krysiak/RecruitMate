@@ -1,5 +1,7 @@
 import { type MatchResponse } from '../../../types/api';
+import { SCORE_THRESHOLDS } from '../../../constants';
 import styles from './MatchResults.module.css';
+import { memo, useMemo } from 'react';
 
 interface MatchResultsProps {
   data: MatchResponse;
@@ -12,15 +14,18 @@ interface ComputedStatus {
 
 // Helper to determine status based on score
 const getTemporaryStatus = (score: number): ComputedStatus => {
-  if (score >= 0.7) return { label: "Good Match ✅", className: styles.statusGood };
-  if (score >= 0.4) return { label: "Medium Match ⚠️", className: styles.statusMedium };
-  if (score > 0.0) return { label: "Weak Match 🔸", className: styles.statusWeak };
+  if (score >= SCORE_THRESHOLDS.GOOD) return { label: "Good Match ✅", className: styles.statusGood };
+  if (score >= SCORE_THRESHOLDS.MEDIUM) return { label: "Medium Match ⚠️", className: styles.statusMedium };
+  if (score > SCORE_THRESHOLDS.WEAK) return { label: "Weak Match 🔸", className: styles.statusWeak };
   return { label: "No Match ❌", className: styles.statusNone };
 };
 
-export const MatchResults = ({ data }: MatchResultsProps) => {
+export const MatchResults = memo(({ data }: MatchResultsProps) => {
 
-  const sortedDetails = [...data.details].sort((a, b) => b.score - a.score);
+  const sortedDetails = useMemo(() =>
+    [...data.details].sort((a, b) => b.score - a.score),
+    [data.details]
+  );
 
   return (
     <div className={styles.container}>
@@ -29,16 +34,16 @@ export const MatchResults = ({ data }: MatchResultsProps) => {
       {/* Main Scores */}
       <div className={styles.scoresWrapper}>
         <div className={styles.scoreItem}>
-            <span className={styles.scoreLabel}>Semantic</span>
-            <span className={styles.scoreValue}>{(data.semantic_score * 100).toFixed(1)}%</span>
+          <span className={styles.scoreLabel}>Semantic</span>
+          <span className={styles.scoreValue}>{(data.semantic_score * 100).toFixed(1)}%</span>
         </div>
         <div className={styles.scoreItem}>
-            <span className={styles.scoreLabel}>Keywords</span>
-            <span className={styles.scoreValue}>{(data.keyword_score * 100).toFixed(1)}%</span>
+          <span className={styles.scoreLabel}>Keywords</span>
+          <span className={styles.scoreValue}>{(data.keyword_score * 100).toFixed(1)}%</span>
         </div>
         <div className={styles.scoreItem}>
-            <span className={styles.scoreLabel}>Action Verbs</span>
-            <span className={styles.scoreValue}>{(data.action_verb_score * 100).toFixed(1)}%</span>
+          <span className={styles.scoreLabel}>Action Verbs</span>
+          <span className={styles.scoreValue}>{(data.action_verb_score * 100).toFixed(1)}%</span>
         </div>
       </div>
 
@@ -75,20 +80,20 @@ export const MatchResults = ({ data }: MatchResultsProps) => {
               </div>
 
               <div className={styles.metaInfo}>
-                 Section: {detail.cv_section}
+                Section: {detail.cv_section}
               </div>
 
               <p className={styles.detailText}> OFFER <br />
                 {detail.job_requirement}
               </p>
 
-                <p className={styles.detailText}> CV <br />
+              <p className={styles.detailText}> CV <br />
                 {detail.best_cv_match}
-                </p>
+              </p>
             </div>
           );
         })}
       </div>
     </div>
   );
-};
+});

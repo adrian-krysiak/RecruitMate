@@ -19,6 +19,7 @@ local_settings.py
 db.sqlite3
 media/
 models_cache/
+backend/accounts/migrations/
 
 # Node.js
 node_modules/
@@ -48,3 +49,7 @@ lerna-debug.log*
 
 # Specific data files
 ml_service/data/processed/
+backend/.env.example
+backend/QUICK_REFERENCE.md
+frontend/QUICK_REFERENCE.md
+frontend/src/CSP_SETUP_GUIDE.md

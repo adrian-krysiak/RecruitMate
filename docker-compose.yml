@@ -44,7 +44,7 @@ services:
     ports:
       - "5173:5173"
     environment:
-      - VITE_API_URL=http://ml_service:5001
+      - VITE_API_URL=http://backend:8000
     depends_on:
       - ml_service
       - backend

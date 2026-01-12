@@ -1,4 +1,5 @@
-import { type ChangeEvent } from 'react';
+import { type ChangeEvent, memo } from 'react';
+import { FILE_UPLOAD, MATCH_CONFIG } from '../../../constants';
 import styles from '../GuestScanner.module.css';
 
 interface CVInputSectionProps {
@@ -10,7 +11,7 @@ interface CVInputSectionProps {
   loading: boolean;
 }
 
-export const CVInputSection = ({
+export const CVInputSection = memo(({
   inputMode,
   cvText,
   setCvText,
@@ -31,9 +32,11 @@ export const CVInputSection = ({
         className={styles.textarea}
         placeholder="Paste CV text here..."
         value={cvText}
-        minLength={50}
+        minLength={MATCH_CONFIG.MIN_CV_LENGTH}
         onChange={(e) => setCvText(e.target.value)}
         disabled={loading}
+        aria-label="CV Text"
+        required
       />
     );
   }
@@ -45,9 +48,10 @@ export const CVInputSection = ({
         type="file"
         id="cv-upload"
         className={styles.fileInput}
-        accept=".pdf,.docx,.txt"
+        accept={FILE_UPLOAD.ACCEPTED_FORMATS}
         onChange={handleFileChange}
         disabled={loading}
+        aria-label="Upload CV file"
       />
       <label htmlFor="cv-upload" className={styles.uploadLabel}>
         {loading ? 'Uploading...' : 'Choose File'}
@@ -60,4 +64,4 @@ export const CVInputSection = ({
       )}
     </div>
   );
-};
+});

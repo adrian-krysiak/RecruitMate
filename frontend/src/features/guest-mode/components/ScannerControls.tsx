@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from '../GuestScanner.module.css';
 
 interface ScannerControlsProps {
@@ -8,7 +9,7 @@ interface ScannerControlsProps {
   setUseAiParsing: (val: boolean) => void;
 }
 
-export const ScannerControls = ({
+export const ScannerControls = memo(({
   inputMode,
   setInputMode,
   isLoggedIn,
@@ -17,11 +18,14 @@ export const ScannerControls = ({
 }: ScannerControlsProps) => {
   return (
     <div className={styles.controlsHeader}>
-      <div className={styles.tabsContainer}>
+      <div className={styles.tabsContainer} role="tablist">
         <button
           type="button"
           className={`${styles.tabButton} ${inputMode === 'text' ? styles.activeTab : ''}`}
           onClick={() => setInputMode('text')}
+          role="tab"
+          aria-selected={inputMode === 'text'}
+          aria-label="Paste CV as text"
         >
           Paste Text
         </button>
@@ -29,6 +33,9 @@ export const ScannerControls = ({
           type="button"
           className={`${styles.tabButton} ${inputMode === 'file' ? styles.activeTab : ''}`}
           onClick={() => setInputMode('file')}
+          role="tab"
+          aria-selected={inputMode === 'file'}
+          aria-label="Upload CV file"
         >
           Upload File
         </button>
@@ -42,10 +49,11 @@ export const ScannerControls = ({
             checked={useAiParsing}
             onChange={(e) => setUseAiParsing(e.target.checked)}
             disabled={!isLoggedIn}
+            aria-label="Enable AI deep analysis (requires login)"
           />
           <span className={styles.slider}></span>
         </label>
       </div>
     </div>
   );
-};
+});

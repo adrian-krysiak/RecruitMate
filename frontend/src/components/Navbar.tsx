@@ -1,6 +1,7 @@
 import { type ViewMode } from "../types/ui";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Navbar.module.css";
+import { memo, useCallback } from "react";
 
 interface NavbarProps {
     currentView: ViewMode;
@@ -9,22 +10,23 @@ interface NavbarProps {
     onLogout: () => void;
 }
 
-export const Navbar = ({
+export const Navbar = memo(({
     currentView,
     onViewChange,
     isLoggedIn,
     onLogout,
 }: NavbarProps) => {
-    const getButtonClass = (viewName: ViewMode) => {
-        return `${styles.navButton} ${currentView === viewName ? styles.active : ""
-            }`;
-    };
+    const getButtonClass = useCallback((viewName: ViewMode) => {
+        return `${styles.navButton} ${currentView === viewName ? styles.active : ""}`;
+    }, [currentView]);
 
     return (
-        <nav className={styles.nav}>
+        <nav className={styles.nav} aria-label="Main navigation">
             <button
                 className={getButtonClass("guestScanner")}
                 onClick={() => onViewChange("guestScanner")}
+                aria-label="Go to Guest Scanner"
+                aria-current={currentView === "guestScanner" ? "page" : undefined}
             >
                 Guest Scanner
             </button>
@@ -33,6 +35,8 @@ export const Navbar = ({
                 className={getButtonClass("cvWritter")}
                 onClick={() => onViewChange("cvWritter")}
                 disabled={!isLoggedIn}
+                aria-label="Go to CV Writer (login required)"
+                aria-current={currentView === "cvWritter" ? "page" : undefined}
             >
                 CV Writer
             </button>
@@ -41,6 +45,8 @@ export const Navbar = ({
                 className={getButtonClass("userAdvisor")}
                 onClick={() => onViewChange("userAdvisor")}
                 disabled={!isLoggedIn}
+                aria-label="Go to User Advisor (login required)"
+                aria-current={currentView === "userAdvisor" ? "page" : undefined}
             >
                 User Advisor
             </button>
@@ -52,6 +58,8 @@ export const Navbar = ({
                     className={getButtonClass("userDashboard")}
                     onClick={() => onViewChange("userDashboard")}
                     disabled={!isLoggedIn}
+                    aria-label="Go to User Dashboard (login required)"
+                    aria-current={currentView === "userDashboard" ? "page" : undefined}
                 >
                     User Dashboard
                 </button>
@@ -59,13 +67,18 @@ export const Navbar = ({
                 <ThemeToggle />
 
                 {isLoggedIn ? (
-                    <button className={styles.authButton} onClick={onLogout}>
+                    <button
+                        className={styles.authButton}
+                        onClick={onLogout}
+                        aria-label="Logout from your account"
+                    >
                         Logout
                     </button>
                 ) : (
                     <button
                         className={styles.authButton}
                         onClick={() => onViewChange('login')}
+                        aria-label="Login to your account"
                     >
                         Login
                     </button>
@@ -73,4 +86,4 @@ export const Navbar = ({
             </div>
         </nav>
     );
-};
+});

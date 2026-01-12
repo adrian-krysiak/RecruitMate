@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
       },
       proxy: {
         '/api': {
-          target: env.VITE_API_URL || 'http://ml_service:5001',
+          target: env.VITE_API_URL || 'http://localhost:8000',
           changeOrigin: true,
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, ''),

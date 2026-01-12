@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { STORAGE_KEYS, THEME } from '../constants';
+import { StorageService } from '../utils/storage';
 
 export function ThemeToggle() {
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        const savedMode = localStorage.getItem('theme');
-        return savedMode === 'dark';
+        const savedMode = StorageService.getString(STORAGE_KEYS.THEME);
+        return savedMode === THEME.DARK;
     });
 
     useEffect(() => {
-        if (isDarkMode) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
+        const theme = isDarkMode ? THEME.DARK : THEME.LIGHT;
+        document.documentElement.setAttribute('data-theme', theme);
+        StorageService.setString(STORAGE_KEYS.THEME, theme);
     }, [isDarkMode]);
 
-    const toggleTheme = () => {
+    const toggleTheme = useCallback(() => {
         setIsDarkMode(prevMode => !prevMode);
-    };
+    }, []);
 
     return (
         <button
             id="themeToggleButton"
             onClick={toggleTheme}
+            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+            type="button"
         >
-            {isDarkMode ? 'Light' : 'Dark'}
+            {isDarkMode ? '☀️ Light' : '🌙 Dark'}
         </button>
     );
 }
