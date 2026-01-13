@@ -1,14 +1,14 @@
 import { useState, useCallback, memo } from 'react';
-import { isAxiosError } from 'axios';
 import { type LoginRequest } from '../../types/api';
-import { type ViewMode } from '../../types/ui';
+import { VIEWS, type ViewMode } from '../../types/ui';
 import { authService } from '../../services/authService';
 import { ErrorMessage } from '../guest-mode/components/ErrorMessage';
 import { LoadingOverlay } from '../../components/LoadingOverlay';
+import { toError } from '../../utils/errorHandler';
 import styles from './Login.module.css';
 
 interface LoginProps {
-    onLoginSuccess: (username: string, email: string) => void;
+    onLoginSuccess: (username: string, email: string, isPremium?: boolean) => void;
     onViewChange: (view: ViewMode) => void;
 }
 
@@ -38,18 +38,11 @@ export const Login = memo(({ onLoginSuccess, onViewChange }: LoginProps) => {
 
         try {
             const response = await authService.login(formData);
-            onLoginSuccess(response.user.username, response.user.email);
-            onViewChange('guestScanner');
+            const isPremium = response.user.is_premium ?? false;
+            onLoginSuccess(response.user.username, response.user.email, isPremium);
+            onViewChange(VIEWS.GUEST_SCANNER);
         } catch (err) {
-            if (isAxiosError(err)) {
-                setError(new Error(
-                    err.response?.data?.message ||
-                    err.response?.data?.detail ||
-                    'Login failed. Please check your credentials.'
-                ));
-            } else {
-                setError(err instanceof Error ? err : new Error('An unexpected error occurred'));
-            }
+            setError(toError(err));
         } finally {
             setIsLoading(false);
         }
@@ -126,7 +119,7 @@ export const Login = memo(({ onLoginSuccess, onViewChange }: LoginProps) => {
                         <button
                             type="button"
                             className={styles.linkButton}
-                            onClick={() => onViewChange('register')}
+                            onClick={() => onViewChange(VIEWS.REGISTER)}
                             disabled={isLoading}
                         >
                             Create one
@@ -144,3 +137,5 @@ export const Login = memo(({ onLoginSuccess, onViewChange }: LoginProps) => {
         </>
     );
 });
+
+Login.displayName = 'Login';

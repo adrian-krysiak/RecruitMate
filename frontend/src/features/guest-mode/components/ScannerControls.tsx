@@ -5,6 +5,7 @@ interface ScannerControlsProps {
   inputMode: 'text' | 'file';
   setInputMode: (mode: 'text' | 'file') => void;
   isLoggedIn: boolean;
+  isPremium: boolean;
   useAiParsing: boolean;
   setUseAiParsing: (val: boolean) => void;
 }
@@ -13,6 +14,7 @@ export const ScannerControls = memo(({
   inputMode,
   setInputMode,
   isLoggedIn,
+  isPremium,
   useAiParsing,
   setUseAiParsing
 }: ScannerControlsProps) => {
@@ -41,15 +43,16 @@ export const ScannerControls = memo(({
         </button>
       </div>
 
-      <div className={`${styles.toggleContainer} ${!isLoggedIn ? styles.disabledControl : ''}`}>
-        <span>AI Deep Analysis</span>
+      <div className={`${styles.toggleContainer} ${!isLoggedIn || !isPremium ? styles.disabledControl : ''}`}>
+        <span>AI Deep Analysis {!isPremium && "🔒"}</span>
         <label className={styles.switch}>
           <input
             type="checkbox"
             checked={useAiParsing}
             onChange={(e) => setUseAiParsing(e.target.checked)}
-            disabled={!isLoggedIn}
-            aria-label="Enable AI deep analysis (requires login)"
+            disabled={!isLoggedIn || !isPremium}
+            aria-label={!isPremium ? "AI analysis (Premium feature)" : "Enable AI deep analysis"}
+            title={!isPremium ? "Premium feature" : ""}
           />
           <span className={styles.slider}></span>
         </label>

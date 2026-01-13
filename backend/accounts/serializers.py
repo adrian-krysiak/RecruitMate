@@ -1,6 +1,8 @@
+from django.utils import timezone
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
+
 from .models import User
 
 
@@ -61,3 +63,26 @@ class UserLoginSerializer(serializers.Serializer):
         required=True,
         style={'input_type': 'password'}
     )
+
+
+class UserDashboardSerializer(serializers.ModelSerializer):
+    """Serializer for user dashboard - read and update operations."""
+    full_name = serializers.ReadOnlyField()
+
+    class Meta:
+        model = User
+        fields = (
+            'username', 'email', 'first_name', 'last_name',
+            'full_name', 'birth_date', 'is_premium'
+        )
+        read_only_fields = (
+            'is_premium', 'email'
+        )
+
+    def validate_birth_date(self, value):
+        """Ensure birth date is not in the future."""
+        if value and value > timezone.now().date():
+            raise serializers.ValidationError(
+                "Birth date cannot be in the future."
+                )
+        return value

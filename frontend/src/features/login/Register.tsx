@@ -1,11 +1,11 @@
 import { useState, useCallback, memo } from 'react';
-import { isAxiosError } from 'axios';
 import { type RegisterRequest, type RegisterResponse } from '../../types/api';
-import { type ViewMode } from '../../types/ui';
+import { VIEWS, type ViewMode } from '../../types/ui';
 import { MATCH_CONFIG } from '../../constants';
 import { validateEmail, validatePassword, validateUsername } from '../../utils/validation';
 import { ErrorMessage } from '../guest-mode/components/ErrorMessage';
 import { LoadingOverlay } from '../../components/LoadingOverlay';
+import { toError } from '../../utils/errorHandler';
 import styles from './Register.module.css';
 
 interface RegisterProps {
@@ -70,17 +70,9 @@ export const Register = memo(({ onRegisterSuccess, onViewChange }: RegisterProps
                 email: formData.email,
                 password: formData.password
             });
-            onViewChange('userDashboard');
+            onViewChange(VIEWS.USER_DASHBOARD);
         } catch (err) {
-            if (isAxiosError(err)) {
-                setError(new Error(
-                    err.response?.data?.message ||
-                    err.response?.data?.detail ||
-                    'Registration failed. Please review your details.'
-                ));
-            } else {
-                setError(err instanceof Error ? err : new Error('An unexpected error occurred'));
-            }
+            setError(toError(err));
         } finally {
             setIsLoading(false);
         }
@@ -195,7 +187,7 @@ export const Register = memo(({ onRegisterSuccess, onViewChange }: RegisterProps
                         <button
                             type="button"
                             className={styles.linkButton}
-                            onClick={() => onViewChange('login')}
+                            onClick={() => onViewChange(VIEWS.LOGIN)}
                             disabled={isLoading}
                         >
                             Back to login
@@ -206,3 +198,5 @@ export const Register = memo(({ onRegisterSuccess, onViewChange }: RegisterProps
         </>
     );
 });
+
+Register.displayName = 'Register';

@@ -23,10 +23,10 @@ export interface MatchDetail {
 }
 
 export const MatchStatusValues = {
-    GOOD: "Good Match ✅",
-    MEDIUM: "Medium Match ⚠️",
-    WEAK: "Weak Match 🔸",
-    NONE: "No Match ❌",
+  GOOD: "Good Match ✅",
+  MEDIUM: "Medium Match ⚠️",
+  WEAK: "Weak Match 🔸",
+  NONE: "No Match ❌",
 } as const;
 export type MatchStatus = typeof MatchStatusValues[keyof typeof MatchStatusValues];
 
@@ -37,14 +37,14 @@ export interface MatchRequest {
 }
 
 export interface GeneralServerError {
-    message: string;
-    detail?: string;
+  message: string;
+  detail?: string;
 }
 
 export interface ValidationError {
-    loc: (string | number)[];
-    msg: string;
-    type: string;
+  loc: (string | number)[];
+  msg: string;
+  type: string;
 }
 
 export interface FastApiValidationError {
@@ -65,6 +65,7 @@ export interface LoginResponse {
     id: string;
     username: string;
     email: string;
+    is_premium?: boolean;
   };
 }
 
@@ -76,3 +77,34 @@ export interface RegisterRequest {
 }
 
 export type RegisterResponse = LoginResponse;
+
+// --- Stored User (from localStorage) ---
+export interface StoredUser {
+  id: string;
+  username: string;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  birth_date?: string;
+  full_name?: string;
+  is_premium?: boolean;
+}
+
+// --- Dashboard ---
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  birth_date?: string;
+  full_name?: string;
+  is_premium: boolean;
+}
+
+export interface UpdateProfileRequest {
+  username?: string;
+  first_name?: string;
+  last_name?: string;
+  birth_date?: string;
+}

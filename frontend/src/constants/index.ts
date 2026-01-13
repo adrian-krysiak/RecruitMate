@@ -1,6 +1,6 @@
 // API Configuration
 export const API_CONFIG = {
-  TIMEOUT: 10000,
+  TIMEOUT: 60000, // 60 seconds for CV analysis with large files
   BASE_URL: "/api",
 } as const;
 
@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
     REGISTER: "/auth/register/",
     LOGOUT: "/auth/logout/",
     REFRESH: "/auth/token/refresh/",
+    DASHBOARD: "/auth/dashboard/",
   },
   MATCH: "/match",
 } as const;
@@ -22,6 +23,13 @@ export const STORAGE_KEYS = {
   USER: "user",
   THEME: "theme",
   SCANNER_INPUT_MODE: "guestScannerInputMode",
+} as const;
+
+// SessionStorage Keys (cleared on tab close, persists on refresh)
+export const SESSION_KEYS = {
+  SCANNER_CV_TEXT: "scannerCvText",
+  SCANNER_JOB_DESC: "scannerJobDesc",
+  SCANNER_RESULT: "scannerResult",
 } as const;
 
 // Theme Configuration

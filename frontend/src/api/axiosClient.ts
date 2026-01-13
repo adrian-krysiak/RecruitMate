@@ -24,6 +24,19 @@ function notifyRateLimitChange(info: RateLimitInfo | null) {
   rateLimitState.listeners.forEach((listener) => listener(info));
 }
 
+// Token refresh mutex to prevent concurrent refresh attempts
+let isRefreshing = false;
+let refreshSubscribers: ((token: string) => void)[] = [];
+
+function subscribeToTokenRefresh(callback: (token: string) => void) {
+  refreshSubscribers.push(callback);
+}
+
+function onTokenRefreshed(token: string) {
+  refreshSubscribers.forEach((callback) => callback(token));
+  refreshSubscribers = [];
+}
+
 export const axiosClient = axios.create({
   baseURL: API_CONFIG.BASE_URL,
   headers: {
@@ -80,12 +93,24 @@ axiosClient.interceptors.response.use(
       }
     }
 
-    // Auto-Refresh Token Logic
+    // Auto-Refresh Token Logic with Mutex
     if (
       error.response?.status === HTTP_STATUS.UNAUTHORIZED &&
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
+
+      // If already refreshing, queue this request
+      if (isRefreshing) {
+        return new Promise((resolve) => {
+          subscribeToTokenRefresh((token: string) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            resolve(axiosClient(originalRequest));
+          });
+        });
+      }
+
+      isRefreshing = true;
 
       try {
         const refreshToken = StorageService.getString(
@@ -94,6 +119,7 @@ axiosClient.interceptors.response.use(
         if (!refreshToken) {
           // If there's no refresh token, clear auth and reject original error
           StorageService.clearAuthData();
+          isRefreshing = false;
           return Promise.reject(error);
         }
 
@@ -104,14 +130,22 @@ axiosClient.interceptors.response.use(
           }
         );
 
-        const { access_token } = response.data;
-        StorageService.setString(STORAGE_KEYS.TOKEN, access_token);
+        const { access, refresh } = response.data;
+        StorageService.setString(STORAGE_KEYS.TOKEN, access);
+        if (refresh) {
+          StorageService.setString(STORAGE_KEYS.REFRESH_TOKEN, refresh);
+        }
 
-        originalRequest.headers.Authorization = `Bearer ${access_token}`;
+        isRefreshing = false;
+        onTokenRefreshed(access);
+
+        originalRequest.headers.Authorization = `Bearer ${access}`;
         return axiosClient(originalRequest);
       } catch (refreshError) {
         // Clear auth data but don't redirect - let React handle navigation
         StorageService.clearAuthData();
+        isRefreshing = false;
+        refreshSubscribers = [];
         return Promise.reject(refreshError);
       }
     }

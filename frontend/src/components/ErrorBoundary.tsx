@@ -21,7 +21,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error('Error caught by boundary:', error, errorInfo);
+        // TODO: Send to error reporting service (e.g., Sentry)
+        // For now, errors are only logged in development
+        if (import.meta.env.DEV) {
+            console.error('Error caught by boundary:', error, errorInfo);
+        }
     }
 
     render() {
