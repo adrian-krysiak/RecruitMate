@@ -1,99 +1,227 @@
-import { type MatchResponse } from '../../../types/api';
-import { SCORE_THRESHOLDS } from '../../../constants';
+import { type MatchResponse, type MatchStatus, type CuratedMatchDetail } from '../../../types/api';
+import { STATUS_CONFIG } from '../../../constants';
 import styles from './MatchResults.module.css';
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 
 interface MatchResultsProps {
   data: MatchResponse;
 }
 
-interface ComputedStatus {
-  label: string;
-  className: string;
-}
-
-// Helper to determine status based on score
-const getTemporaryStatus = (score: number): ComputedStatus => {
-  if (score >= SCORE_THRESHOLDS.GOOD) return { label: "Good Match ✅", className: styles.statusGood };
-  if (score >= SCORE_THRESHOLDS.MEDIUM) return { label: "Medium Match ⚠️", className: styles.statusMedium };
-  if (score > SCORE_THRESHOLDS.WEAK) return { label: "Weak Match 🔸", className: styles.statusWeak };
-  return { label: "No Match ❌", className: styles.statusNone };
+// Helper to get status configuration
+const getStatusConfig = (status: MatchStatus) => {
+  return STATUS_CONFIG[status] || STATUS_CONFIG.None;
 };
 
-export const MatchResults = memo(({ data }: MatchResultsProps) => {
+// --- Sub-Components ---
 
-  const sortedDetails = useMemo(() =>
-    [...data.details].sort((a, b) => b.score - a.score),
-    [data.details]
+/** Overall Score Header */
+const OverallScoreHeader = ({ score, status }: { score: number | null; status: MatchStatus }) => {
+  const config = getStatusConfig(status);
+  return (
+    <div className={`${styles.overallScore} ${styles[config.colorClass]}`}>
+      <h2>
+        {score !== null ? (
+          <>Match Score: {score}%</>
+        ) : (
+          <>{config.label} {config.emoji}</>
+        )}
+      </h2>
+      {score !== null && (
+        <span className={styles.statusLabel}>{config.label} {config.emoji}</span>
+      )}
+    </div>
   );
+};
+
+/** Status Metrics Row */
+const StatusMetrics = ({
+  semantic,
+  keywords,
+  actionVerbs,
+}: {
+  semantic: MatchStatus;
+  keywords: MatchStatus;
+  actionVerbs: MatchStatus;
+}) => (
+  <div className={styles.scoresWrapper}>
+    <StatusCard label="Semantic Relevance" status={semantic} />
+    <StatusCard label="ATS Keywords" status={keywords} />
+    <StatusCard label="Action Verbs" status={actionVerbs} />
+  </div>
+);
+
+/** Individual Status Card */
+const StatusCard = ({ label, status }: { label: string; status: MatchStatus }) => {
+  const config = getStatusConfig(status);
+  return (
+    <div className={`${styles.scoreItem} ${styles[config.colorClass]}`}>
+      <span className={styles.scoreLabel}>{label}</span>
+      <span className={styles.statusValue}>
+        {config.label} {config.emoji}
+      </span>
+    </div>
+  );
+};
+
+/** Missing Keywords Section with Premium Upsell */
+const MissingKeywordsSection = ({
+  keywords,
+  hiddenCount,
+}: {
+  keywords: string[];
+  hiddenCount: number;
+}) => {
+  if (keywords.length === 0 && hiddenCount === 0) return null;
 
   return (
-    <div className={styles.container}>
-      <h2>Match Score: {(data.final_score * 100).toFixed(1)}%</h2>
-
-      {/* Main Scores */}
-      <div className={styles.scoresWrapper}>
-        <div className={styles.scoreItem}>
-          <span className={styles.scoreLabel}>Semantic</span>
-          <span className={styles.scoreValue}>{(data.semantic_score * 100).toFixed(1)}%</span>
-        </div>
-        <div className={styles.scoreItem}>
-          <span className={styles.scoreLabel}>Keywords</span>
-          <span className={styles.scoreValue}>{(data.keyword_score * 100).toFixed(1)}%</span>
-        </div>
-        <div className={styles.scoreItem}>
-          <span className={styles.scoreLabel}>Action Verbs</span>
-          <span className={styles.scoreValue}>{(data.action_verb_score * 100).toFixed(1)}%</span>
-        </div>
+    <div className={styles.missingKeywordsSection}>
+      <h3>⚠️ Missing Keywords</h3>
+      <p className={styles.sectionHint}>
+        Add these keywords to your CV to improve ATS compatibility:
+      </p>
+      <div className={styles.keywordList}>
+        {keywords.map((keyword, index) => (
+          <span key={index} className={styles.keywordTag}>
+            {keyword}
+          </span>
+        ))}
+        {hiddenCount > 0 && (
+          <div className={styles.lockedCard}>
+            <span className={styles.lockIcon}>🔒</span>
+            <span>
+              And <strong>{hiddenCount}</strong> more keywords.{' '}
+              <em>Upgrade to Premium to see the full list.</em>
+            </span>
+          </div>
+        )}
       </div>
+    </div>
+  );
+};
 
-      {/* Missing Keywords Alert */}
-      {data.missing_keywords.length > 0 && (
-        <div className={styles.missingKeywordsSection}>
-          <h3>⚠️ Missing Keywords</h3>
-          <div className={styles.keywordList}>
-            {data.missing_keywords.map((keyword, index) => (
-              <span key={index} className={styles.keywordTag}>
-                {keyword}
-              </span>
-            ))}
+/** Unaddressed Requirements (Gaps) Section */
+const UnaddressedRequirementsSection = ({ requirements }: { requirements: string[] }) => {
+  if (requirements.length === 0) return null;
+
+  return (
+    <div className={styles.gapsSection}>
+      <h3>🎯 Gaps in Your Profile</h3>
+      <p className={styles.sectionHint}>
+        These job requirements were not clearly addressed in your CV:
+      </p>
+      <ul className={styles.gapsList}>
+        {requirements.map((req, index) => (
+          <li key={index} className={styles.gapItem}>
+            {req}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+/** Top Matches Detail List */
+const TopMatchesList = ({ matches }: { matches: CuratedMatchDetail[] }) => {
+  if (matches.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <p>No strong matches found between your CV and the job requirements.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.detailsList}>
+      {matches.map((match, idx) => {
+        const config = getStatusConfig(match.status);
+        return (
+          <div key={idx} className={`${styles.detailItem} ${styles[config.colorClass]}`}>
+            <div className={styles.detailHeader}>
+              <strong className={styles.statusBadge}>
+                {config.label} {config.emoji}
+              </strong>
+              {match.score_percentage !== null && (
+                <span className={styles.scoreDisplay}>
+                  {match.score_percentage}%
+                </span>
+              )}
+            </div>
+
+            <div className={styles.metaInfo}>
+              Section: {match.cv_section}
+            </div>
+
+            <p className={styles.detailText}>
+              <span className={styles.detailLabel}>JOB REQUIREMENT</span>
+              {match.job_requirement}
+            </p>
+
+            <p className={styles.detailText}>
+              <span className={styles.detailLabel}>YOUR CV</span>
+              {match.cv_match}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+/** AI Report Section with Premium Upsell */
+const AIReportSection = ({ report }: { report: string | null }) => {
+  return (
+    <div className={styles.aiReportSection}>
+      <h3>🤖 AI Deep Analysis</h3>
+      {report ? (
+        <div className={styles.aiReportContent}>
+          {/* Render markdown as plain text for now - can add react-markdown later */}
+          {report.split('\n').map((line, idx) => (
+            <p key={idx}>{line}</p>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.upgradePrompt}>
+          <div className={styles.upgradeIcon}>✨</div>
+          <div className={styles.upgradeText}>
+            <strong>Unlock Deep AI Analysis</strong>
+            <p>
+              Get personalized feedback on your CV, including specific suggestions
+              for improvement, missing skills analysis, and tailored recommendations
+              to boost your match score.
+            </p>
+            <p className={styles.premiumHint}>
+              Premium users with AI Deep Analysis receive detailed AI-powered insights with every scan.
+            </p>
           </div>
         </div>
       )}
+    </div>
+  );
+};
 
-      {/* Details List */}
-      <h3>Details Breakdown</h3>
-      <div className={styles.detailsList}>
-        {sortedDetails.map((detail, idx) => {
-          const status = getTemporaryStatus(detail.score);
+// --- Main Component ---
+export const MatchResults = memo(({ data }: MatchResultsProps) => {
+  return (
+    <div className={styles.container}>
+      <OverallScoreHeader score={data.overall_score} status={data.overall_status} />
 
-          return (
-            <div key={idx} className={`${styles.detailItem} ${status.className}`}>
-              <div className={styles.detailHeader}>
-                <strong className={styles.statusBadge}>{status.label}</strong>
-                <span className={styles.scoreDisplay}>Score: {detail.score.toFixed(2)}</span>
-                {detail.raw_semantic_score && (
-                  <span className={styles.scoreDisplay}>
-                    Raw Score: {detail.raw_semantic_score.toFixed(2)}
-                  </span>
-                )}
-              </div>
+      <StatusMetrics
+        semantic={data.semantic_status}
+        keywords={data.keywords_status}
+        actionVerbs={data.action_verbs_status}
+      />
 
-              <div className={styles.metaInfo}>
-                Section: {detail.cv_section}
-              </div>
+      <MissingKeywordsSection
+        keywords={data.missing_keywords}
+        hiddenCount={data.hidden_keywords_count}
+      />
 
-              <p className={styles.detailText}> OFFER <br />
-                {detail.job_requirement}
-              </p>
+      <UnaddressedRequirementsSection requirements={data.unaddressed_requirements} />
 
-              <p className={styles.detailText}> CV <br />
-                {detail.best_cv_match}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+      <h3>🔍 Top Matches</h3>
+      <TopMatchesList matches={data.top_matches} />
+
+      <AIReportSection report={data.ai_report} />
     </div>
   );
 });

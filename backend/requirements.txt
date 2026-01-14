@@ -2,3 +2,6 @@ Django==5.2.8
 djangorestframework==3.16.1
 djangorestframework-simplejwt==5.5.1
 psycopg2-binary==2.9.11
+pydantic==2.12.5
+httpx==0.28.1
+adrf==0.1.12

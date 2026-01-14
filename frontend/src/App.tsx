@@ -52,7 +52,11 @@ function App() {
                         )}
                         {currentView === VIEWS.GUEST_SCANNER && (
                             <FeatureErrorBoundary>
-                                <GuestScanner isLoggedIn={userState.isLoggedIn} isPremium={userState.isPremium} />
+                                <GuestScanner
+                                    key={userState.isLoggedIn ? 'logged-in' : 'logged-out'}
+                                    isLoggedIn={userState.isLoggedIn}
+                                    isPremium={userState.isPremium}
+                                />
                             </FeatureErrorBoundary>
                         )}
                         {currentView === VIEWS.CV_WRITER && (

@@ -13,7 +13,11 @@ export const API_ENDPOINTS = {
     REFRESH: "/auth/token/refresh/",
     DASHBOARD: "/auth/dashboard/",
   },
-  MATCH: "/match",
+  ADVISOR: {
+    ANALYZE_MATCH: "/advisor/analyze/match/",
+    GENERATE_CV: "/advisor/generate/cv/",
+    ADVICE_CAREER: "/advisor/advice/career/",
+  }
 } as const;
 
 // LocalStorage Keys
@@ -46,11 +50,32 @@ export const MATCH_CONFIG = {
   MIN_PASSWORD_LENGTH: 8,
 } as const;
 
-// Score Thresholds
-export const SCORE_THRESHOLDS = {
-  GOOD: 0.7,
-  MEDIUM: 0.4,
-  WEAK: 0.0,
+// Status to Color/Class Mapping (backend sends status strings)
+export const STATUS_CONFIG = {
+  Good: {
+    label: "Good Match",
+    emoji: "✅",
+    colorClass: "statusGood",
+    color: "#2ecc71",
+  },
+  Medium: {
+    label: "Medium Match",
+    emoji: "⚠️",
+    colorClass: "statusMedium",
+    color: "#f1c40f",
+  },
+  Weak: {
+    label: "Weak Match",
+    emoji: "🔸",
+    colorClass: "statusWeak",
+    color: "#e67e22",
+  },
+  None: {
+    label: "No Match",
+    emoji: "❌",
+    colorClass: "statusNone",
+    color: "#e74c3c",
+  },
 } as const;
 
 // HTTP Status Codes

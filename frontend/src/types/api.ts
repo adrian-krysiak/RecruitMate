@@ -1,39 +1,44 @@
-// --- Main Response ---
-export interface MatchResponse {
-  final_score: number;
+// --- Match Status Enum (mirrors backend MatchStatus) ---
+export type MatchStatus = "Good" | "Medium" | "Weak" | "None";
 
-  semantic_score: number;
-  keyword_score: number;
-  action_verb_score: number;
-
-  common_keywords: string[];
-  missing_keywords: string[];
-
-  section_scores: Record<string, number>;
-
-  details: MatchDetail[];
-}
-
-export interface MatchDetail {
+// --- Curated Match Detail (for top_matches array) ---
+export interface CuratedMatchDetail {
+  status: MatchStatus;
   job_requirement: string;
-  best_cv_match: string;
+  cv_match: string;
   cv_section: string;
-  score: number;
-  raw_semantic_score?: number;
+  score_percentage: number | null; // null for Free users
 }
 
-export const MatchStatusValues = {
-  GOOD: "Good Match ✅",
-  MEDIUM: "Medium Match ⚠️",
-  WEAK: "Weak Match 🔸",
-  NONE: "No Match ❌",
-} as const;
-export type MatchStatus = typeof MatchStatusValues[keyof typeof MatchStatusValues];
+// --- Main Curated Response (from backend) ---
+export interface MatchResponse {
+  // Overall score - only visible for Premium users
+  overall_score: number | null;
+  overall_status: MatchStatus;
 
+  // Detailed metrics - status only (no raw numbers)
+  semantic_status: MatchStatus;
+  keywords_status: MatchStatus;
+  action_verbs_status: MatchStatus;
+
+  // Curated lists
+  top_matches: CuratedMatchDetail[];
+  missing_keywords: string[];
+  unaddressed_requirements: string[];
+
+  // Metadata / Upsell info
+  hidden_keywords_count: number;
+
+  // AI Report (Premium feature)
+  ai_report: string | null;
+}
+
+// --- Match Request Payload ---
 export interface MatchRequest {
   job_description: string;
   cv_text: string;
   alpha?: number;
+  ai_deep_analysis?: boolean; // Premium feature flag
 }
 
 export interface GeneralServerError {

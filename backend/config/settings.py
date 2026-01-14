@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'accounts',
+    'advisor',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,14 @@ AUTH_USER_MODEL = 'accounts.User'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS',
                                'localhost,127.0.0.1,backend').split(',')
 
+# AI/ML
+ML_SERVICE_URL = os.environ.get('ML_SERVICE_URL', 'http://ml_service:8001')
+AZURE_OPENAI_API_KEY = os.environ.get('AZURE_OPENAI_API_KEY', '')
+ML_DEFAULT_ALPHA = float(os.environ.get(
+    'DEFAULT_ALPHA', '0.7'
+    ))  # Semantic (alpha) vs Keywords (1 - alpha) weight
+ML_SERVICE_TIMEOUT = float(os.environ.get('ML_SERVICE_TIMEOUT', '20.0'))
+
 # REST Framework Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -214,6 +223,14 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
 }
 
 # Security Settings

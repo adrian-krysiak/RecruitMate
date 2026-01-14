@@ -5,7 +5,12 @@ import { StorageService } from '../utils/storage';
 export function ThemeToggle() {
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const savedMode = StorageService.getString(STORAGE_KEYS.THEME);
-        return savedMode === THEME.DARK;
+        // If saved theme exists, use it
+        if (savedMode !== null) {
+            return savedMode === THEME.DARK;
+        }
+        // Otherwise, check system preference
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
     });
 
     useEffect(() => {

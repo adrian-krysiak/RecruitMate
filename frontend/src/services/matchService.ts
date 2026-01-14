@@ -7,7 +7,7 @@ export const analyzeMatch = async (
   signal?: AbortSignal
 ): Promise<MatchResponse> => {
   const response = await axiosClient.post<MatchResponse>(
-    API_ENDPOINTS.MATCH,
+    API_ENDPOINTS.ADVISOR.ANALYZE_MATCH,
     payload,
     { signal }
   );

@@ -27,7 +27,7 @@ export const useMatchAnalysis = () => {
   }, [result]);
 
   const performAnalysis = useCallback(
-    async (jobDesc: string, cvText: string) => {
+    async (jobDesc: string, cvText: string, aiDeepAnalysis: boolean = false) => {
       // Cancel any in-flight request
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
@@ -45,6 +45,7 @@ export const useMatchAnalysis = () => {
           job_description: jobDesc,
           cv_text: cvText,
           alpha: MATCH_CONFIG.DEFAULT_ALPHA,
+          ai_deep_analysis: aiDeepAnalysis,
         };
 
         const data = await analyzeMatch(payload, abortControllerRef.current.signal);

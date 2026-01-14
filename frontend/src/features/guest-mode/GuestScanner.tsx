@@ -81,20 +81,20 @@ export const GuestScanner = ({ isLoggedIn = false, isPremium = false }: GuestSca
           // Read file content as text for TXT files
           if (cvFile.type === 'text/plain') {
             const fileContent = await readFileAsText(cvFile);
-            await performAnalysis(jobDesc, fileContent);
+            await performAnalysis(jobDesc, fileContent, useAiParsing);
           } else {
             // For PDF/DOCX, we need backend parsing - send as FormData
             // For now, indicate file upload is for these formats
-            await performAnalysis(jobDesc, `[FILE: ${cvFile.name}] - PDF/DOCX parsing requires backend support`);
+            await performAnalysis(jobDesc, `[FILE: ${cvFile.name}] - PDF/DOCX parsing requires backend support`, useAiParsing);
           }
         } catch {
-          await performAnalysis(jobDesc, `[FILE ERROR: Could not read ${cvFile.name}]`);
+          await performAnalysis(jobDesc, `[FILE ERROR: Could not read ${cvFile.name}]`, useAiParsing);
         }
       } else {
-        await performAnalysis(jobDesc, cvText);
+        await performAnalysis(jobDesc, cvText, useAiParsing);
       }
     }
-  }, [inputMode, cvText, cvFile, jobDesc, performAnalysis]);
+  }, [inputMode, cvText, cvFile, jobDesc, performAnalysis, useAiParsing]);
 
   return (
     <>
