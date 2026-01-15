@@ -140,13 +140,35 @@ AUTH_USER_MODEL = 'accounts.User'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS',
                                'localhost,127.0.0.1,backend').split(',')
 
-# AI/ML
+# AI/ML Services
 ML_SERVICE_URL = os.environ.get('ML_SERVICE_URL', 'http://ml_service:8001')
-AZURE_OPENAI_API_KEY = os.environ.get('AZURE_OPENAI_API_KEY', '')
-ML_DEFAULT_ALPHA = float(os.environ.get(
-    'DEFAULT_ALPHA', '0.7'
-    ))  # Semantic (alpha) vs Keywords (1 - alpha) weight
+ML_DEFAULT_ALPHA = float(os.environ.get('DEFAULT_ALPHA', '0.7'))
 ML_SERVICE_TIMEOUT = float(os.environ.get('ML_SERVICE_TIMEOUT', '20.0'))
+
+# LLM Configuration (GitHub Models / Google AI)
+GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
+GITHUB_MODELS_ENDPOINT = os.environ.get(
+    'GITHUB_MODELS_ENDPOINT',
+    'https://models.inference.ai.azure.com'
+)
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY', '')
+
+# LLM Service Configuration
+# Daily rate limits for GitHub Models (as of Jan 2026)
+LLM_CONFIG = {
+    'services': {
+        'strategist-pro': {'model': 'o1', 'daily_limit': 8},
+        'strategist-lite': {'model': 'o1-mini', 'daily_limit': 12},
+        'writer': {'model': 'gpt-4o', 'daily_limit': 50},
+        'backup': {'model': 'gpt-4o-mini', 'daily_limit': 150},
+        'analyst': {'model': 'gemini-3-flash', 'daily_limit': 20},
+    },
+    'fallback_chains': {
+        'analyst': ['analyst', 'backup'],
+        'writer': ['writer', 'backup'],
+        'advisor': ['strategist-pro', 'strategist-lite', 'writer', 'backup'],
+    },
+}
 
 # REST Framework Configuration
 REST_FRAMEWORK = {

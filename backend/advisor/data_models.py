@@ -43,7 +43,8 @@ class CuratedMatchDetail(BaseModel):
 
     job_requirement: Annotated[
         str,
-        Field(..., description="The specific requirement from the job posting.")
+        Field(...,
+              description="The specific requirement from the job posting.")
     ]
 
     cv_match: Annotated[
@@ -69,7 +70,7 @@ class CuratedMatchDetail(BaseModel):
     ]
 
 
-class MatchRequest(BaseModel):
+class MatchRequestMLService(BaseModel):
     """Input validation for the matching engine."""
     job_description: Annotated[
         str, Field(..., min_length=50,
@@ -88,6 +89,10 @@ class MatchRequest(BaseModel):
             description="Weight for Semantic Score (0.0-1.0).",
         ),
     ]
+
+
+class MatchRequestBackend(MatchRequestMLService):
+    """Extended MatchRequest with internal flags."""
     ai_deep_analysis: Annotated[
         bool | None,
         Field(

@@ -1,12 +1,14 @@
 import logging
 import json
 import hashlib
+
 from django.conf import settings
 from django.core.cache import cache
 import httpx
 from pydantic import ValidationError
 
-from advisor.data_models import MatchRequest, MatchResponse
+from advisor.data_models import (MatchRequestMLService as MatchRequest,
+                                 MatchResponse)
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,9 @@
-Django==5.2.8
+Django==6.0.1
 djangorestframework==3.16.1
 djangorestframework-simplejwt==5.5.1
 psycopg2-binary==2.9.11
-pydantic==2.12.5
+pydantic==2.11.10
 httpx==0.28.1
 adrf==0.1.12
+semantic-kernel[google]==1.39.0
+openai==1.109.1
